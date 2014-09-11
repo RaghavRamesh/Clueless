@@ -34,7 +34,8 @@
                 <br/><br/>
                 Hoping you can stop being Clueless!<br/><br/>
                 Cheers, <br/>
-                Manasa"; 
+                Manasa <br/>
+                <a href='www.clueless.sg'>www.clueless.sg</a>"; 
                 $body .= "</body>\n"; 
                 $body .= "</html>\n";
 
