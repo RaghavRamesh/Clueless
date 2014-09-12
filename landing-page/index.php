@@ -10,6 +10,7 @@
         <link rel="shortcut icon" href="http://www.clueless.sg/util/flat-ui/images/favicon.ico?v=2" />
         <link rel="stylesheet" href="/util/flat-ui/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/util/flat-ui/css/flat-ui.css">
+        <link rel="stylesheet" href="/css/key-words.css">
         <!-- Using only with Flat-UI (free)-->
         <link rel="stylesheet" href="/util/common-files/css/icon-font.css">
         <!-- end -->
@@ -63,8 +64,8 @@
                             </center></section> 
                             <h3 style="max-width:800px">
                                 You have the dream. You've done the work.<br/> We just create the opportunities.<br/><br/>
-                                <p style="color:black;font-size:20px">We don't discriminate by Year of Study or Faculty. Infact, we love the young and adventurous!
-                                So if you want to try out new industries that aren't related to your faculty or you think that you're too underqualified because you're in year 1 or 2, trust me, this is the place for you. <span><br/><br/><b>We'll help you potentially get the career of your dreams through internships and opportunities. </b><br/><span>All you have to do is let us, and enter your email below!</span><br/></p>
+                                <p style="color:white;font-size:20px">We don't discriminate by Year of Study or Faculty. Infact, we love the young and adventurous!
+                                So if you want to try out new industries that <span class="key_words"> aren't related to your faculty </span> or you think that you're too underqualified because you're in <span class="key_words">year 1 or 2 </span>, trust me, this is the place for you. <span><br/><br/><b>We'll help you potentially get the career of your dreams through internships and opportunities. </b><br/><span>All you have to do is let us, and enter your email below!</span><br/></p>
                             </h3>
                             <?php require('./check_submit.php') ?> 
                             <div class="signup-form">
