@@ -16,6 +16,16 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <div id="fb-root"></div>
+        <script>
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=326937914152431&version=v2.0";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
         <div class="page-wrapper">
             <!-- header-11 -->
             <!-- <header class="header-11" style="margin-top:20px">
@@ -66,6 +76,7 @@
                                 </form>
                              </div>
                              <div class="additional-links"></a><br/> © Clueless 2014</div> 
+                             <div class="fb-like" data-href="https://www.facebook.com/pages/Clueless/265569870307212" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
                         </div>
                     </div>
                 </div>
