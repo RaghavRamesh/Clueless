@@ -75,9 +75,22 @@
                                     </div>
                                     <label name="feedback" id="feedback"><?php echo $msg ?></label>
                                 </form>
-                             </div>
-                             <div class="additional-links"></a><br/> © Clueless 2014</div> 
-                             <div class="fb-like" data-href="https://www.facebook.com/pages/Clueless/265569870307212" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                            </div>
+                            <div class="additional-links"></a><br/> © Clueless 2014</div> 
+                            <div class="fb-like" data-href="https://www.facebook.com/pages/Clueless/265569870307212" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                            <!-- <a class="twitter-follow-button" href="https://twitter.com/CluelessSG" data-show-count="false" data-lang="en">
+                                Follow @CluelessSG
+                            </a> -->
+                            <!-- <script type="text/javascript">
+                            window.twttr = (function (d, s, id) {
+                              var t, js, fjs = d.getElementsByTagName(s)[0];
+                              if (d.getElementById(id)) return;
+                              js = d.createElement(s); js.id = id;
+                              js.src= "https://platform.twitter.com/widgets.js";
+                              fjs.parentNode.insertBefore(js, fjs);
+                              return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } });
+                            }(document, "script", "twitter-wjs"));
+                            </script> -->
                         </div>
                     </div>
                 </div>
