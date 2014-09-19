@@ -71,11 +71,13 @@
                             <div class="signup-form">
                                  <form action="" method="post">
                                  <div class="input-group" style="max-width:800px">
-                                        <input class="form-control" type="email" name="email" id="email" placeholder="Your E-mail"><span class="input-group-btn"><button name="submit" id="submit" type="submit" style="margin-top: -0px;" class="btn btn-default">Sign Up</button></span>
-                                    </div>
-                                    <label name="feedback" id="feedback"><?php echo $msg ?></label>
+                                    <input class="form-control" type="email" name="email" id="email" placeholder="Your E-mail"><span class="input-group-btn"><button name="submit" id="submit" type="submit" style="margin-top: -0px;" class="btn btn-default">Sign Up</button></span>
+                                </div>
+                                <label name="feedback" id="feedback"><?php echo $msg ?></label>
+
                                 </form>
                             </div>
+                            <p style="color:white">To receive a higher chance of grabbing an opportunity, fill up the following <a style="color:black" href="https://clueless.typeform.com/to/dOK3YS">survey</a> so we know exactly what you prefer and what will be best for your career.</h4>
                             <div class="additional-links"></a><br/> © Clueless 2014</div> 
                             <div class="fb-like" data-href="https://www.facebook.com/pages/Clueless/265569870307212" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
                             <!-- <a class="twitter-follow-button" href="https://twitter.com/CluelessSG" data-show-count="false" data-lang="en">
