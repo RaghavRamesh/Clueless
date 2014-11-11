@@ -1,0 +1,73 @@
+@charset "utf-8";
+.listings-links {
+	color: red
+}
+
+.listings-images {
+	max-width: 100%;
+}
+
+.listings-sidebar {
+	background: black;
+	color: white;
+	font-size: 18px;
+	/*box-shadow: 0px 0px 50px #888888;*/
+}
+
+.listings-background {
+	/*background: url(../img/background.jpg);*/
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.listings-shadow {
+	box-shadow: 0px 2px 28px #888888;
+}
+
+.listings-actioncall {
+	width: 100%;
+}
+
+.listings-skills {
+	background: rgb(230, 230, 230);
+}
+
+.listings-placematch {
+	background-color: #91D5E5 !important;
+}
+
+.listings-shadow-placematch {
+	box-shadow: 0px 0px 28px #91D5E5;
+}
+
+.listings-bigspoon {
+	background-color: #005A89 !important;
+	color: white !important;
+}
+
+.listings-shadow-bigspoon {
+	box-shadow: 0px 0px 28px #005A89;
+}
+
+.listings-klinify {
+	background-color: #C70079 !important;
+	color: white !important;
+}
+
+.listings-shadow-klinify {
+	box-shadow: 0px 0px 28px #C70079;
+}
+
+.listings-bonappetour {
+	background-color: #FFA05C !important;
+	color: white !important;
+}
+
+.listings-shadow-bonappetour {
+	box-shadow: 0px 0px 28px #FFA05C;
+}
+
+
+.item {
+	
+}
