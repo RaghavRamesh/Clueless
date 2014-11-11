@@ -1,7 +1,6 @@
 <?php
 	include_once('db_config.php');
 	$email = $_POST['email'];
-
 	$checkForExistingEmail = "SELECT * FROM driffleskii_.registered_users WHERE email = '$email'";
 	$existingEmailResult = $mysqli->query($checkForExistingEmail);
 	$count = $existingEmailResult->num_rows;
