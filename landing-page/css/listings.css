@@ -67,6 +67,14 @@
 	box-shadow: 0px 0px 28px #FFA05C;
 }
 
+.listings-ssu {
+	background-color: rgb(1, 210, 210) !important;
+	color: white !important;
+}
+
+.listings-shadow-ssu {
+	box-shadow: 0px 0px 28px rgb(1, 210, 210);
+}
 
 .item {
 	
