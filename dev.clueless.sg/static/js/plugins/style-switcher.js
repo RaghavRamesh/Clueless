@@ -33,8 +33,7 @@ var StyleSwitcher = function () {
                 }
             }
 
-
-            //Boxed Layout
+            //Dark Layout
             jQuery('.skins-btn').click(function(){
                 jQuery(this).addClass("active-switcher-btn");
                 jQuery(".handle-skins-btn").removeClass("active-switcher-btn");
@@ -44,19 +43,6 @@ var StyleSwitcher = function () {
                 jQuery(this).addClass("active-switcher-btn");
                 jQuery(".skins-btn").removeClass("active-switcher-btn");
                 jQuery("body").removeClass("dark");                
-            });
-
-
-            //Boxed Layout
-            jQuery('.boxed-layout-btn').click(function(){
-                jQuery(this).addClass("active-switcher-btn");
-                jQuery(".wide-layout-btn").removeClass("active-switcher-btn");
-                jQuery("body").addClass("boxed-layout container");
-            });
-            jQuery('.wide-layout-btn').click(function(){
-                jQuery(this).addClass("active-switcher-btn");
-                jQuery(".boxed-layout-btn").removeClass("active-switcher-btn");
-                jQuery("body").removeClass("boxed-layout container");
             });
 
         }

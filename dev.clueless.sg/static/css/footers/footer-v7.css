@@ -2,8 +2,8 @@
 ------------------------------------*/
 .contacts-section {
   color: #fff;
-  position: relative;
-  background: #333 url(../../img/bg/17.jpg) center fixed;
+    position: relative;
+  background: #333 url(../../img/bg/bg3.jpg) center fixed;
 }
 
 .contacts-section:after {
