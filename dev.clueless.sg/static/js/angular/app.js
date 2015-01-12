@@ -1,3 +1,1 @@
-/**
- * Created by Akaash on 11/1/2015.
- */
+var cluelessApp = angular.module('app', []);
