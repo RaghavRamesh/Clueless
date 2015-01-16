@@ -16,10 +16,30 @@ cluelessApp.controller('indexCtrl', function($scope, $modal) {
 	}
 });
 
-cluelessApp.controller('loginModalCtrl', function($scope) {
+cluelessApp.controller('loginModalCtrl', function($scope, $modalInstance) {
 
 });
 
-cluelessApp.controller('registerModalCtrl', function($scope) {
+cluelessApp.controller('registerModalCtrl', function($scope, $modal) {
+	$scope.launchCompanyRegisterModal = function() {
+		var modalInstance = $modal.open({
+		      templateUrl: 'static/angular_templates/companyRegisterModal.html',
+		      controller: 'companyRegisterModalCtrl'
+    	});
+	}
+
+	$scope.launchApplicantRegisterModal = function() {
+		var modalInstance = $modal.open({
+		      templateUrl: 'static/angular_templates/applicantRegisterModal.html',
+		      controller: 'applicantRegisterModalCtrl'
+    	});
+	}
+});
+
+cluelessApp.controller('applicantRegisterModalCtrl', function($scope, $modalInstance) {
+
+});
+
+cluelessApp.controller('companyRegisterModalCtrl', function($scope, $modalInstance) {
 
 });
