@@ -10,7 +10,7 @@ cluelessApp.controller('indexCtrl', function($scope, $modal) {
 
 	$scope.launchRegister = function() {
 		var modalInstance = $modal.open({
-		      templateUrl: 'static/angular_templates/registerModal.html',
+		      templateUrl: 'static/angular_templates/choosePersonRegisterModal.html',
 		      controller: 'registerModalCtrl'
     	});
 	}
