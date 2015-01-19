@@ -1,4 +1,14 @@
-var cluelessApp = angular.module('app', ['ui.bootstrap']);
+var cluelessApp = angular.module('app', ['ui.bootstrap', 'ngRoute']);
+
+cluelessApp.config(function($locationProvider, $routeProvider) {
+	$routeProvider.when('/', {
+		templateUrl: 'static/angular_templates/applicantLandingPage.html',
+		controller: 'applicantLandingPageCtrl'
+	}).when('/company', {
+		templateUrl: 'static/angular_templates/companyLandingPage.html',
+		controller: 'companyLandingPageCtrl'
+	}).otherwise({redirectTo: '/'});
+});
 
 cluelessApp.controller('indexCtrl', function($scope, $modal) {
 	$scope.launchLogin = function() {
@@ -16,7 +26,15 @@ cluelessApp.controller('indexCtrl', function($scope, $modal) {
 	}
 });
 
-cluelessApp.controller('loginModalCtrl', function($scope, $modalInstance) {
+cluelessApp.controller('loginModalCtrl', function($scope) {
+
+});
+
+cluelessApp.controller('applicantLandingPageCtrl', function($scope) {
+
+});
+
+cluelessApp.controller('companyLandingPageCtrl', function($scope) {
 
 });
 
