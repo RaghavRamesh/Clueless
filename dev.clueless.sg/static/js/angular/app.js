@@ -1,14 +1,20 @@
 var cluelessApp = angular.module('app', ['ui.bootstrap', 'ngRoute']);
 
 cluelessApp.config(function($locationProvider, $routeProvider) {
-	$routeProvider.when('/', {
-		templateUrl: 'static/angular_templates/applicantLandingPage.html',
-		controller: 'applicantLandingPageCtrl'
+	$locationProvider.html5Mode(false).hashPrefix('!');
+	$routeProvider.when('/applicant', {
+		templateUrl: 'static/angular_templates/applicantHomePage.html',
+		controller: 'applicantHomePageCtrl'
 	}).when('/company', {
-		templateUrl: 'static/angular_templates/companyLandingPage.html',
-		controller: 'companyLandingPageCtrl'
-	}).otherwise({redirectTo: '/'});
+		templateUrl: 'static/angular_templates/companyHomePage.html',
+		controller: 'companyHomePageCtrl'
+	}).otherwise({redirectTo: '/applicant'});
 });
+
+cluelessApp.config(['$interpolateProvider', function($interpolateProvider) {
+  $interpolateProvider.startSymbol('{[');
+  $interpolateProvider.endSymbol(']}');
+}]);
 
 cluelessApp.controller('indexCtrl', function($scope, $modal) {
 	$scope.launchLogin = function() {
@@ -26,17 +32,29 @@ cluelessApp.controller('indexCtrl', function($scope, $modal) {
 	}
 });
 
+cluelessApp.controller('headerCtrl', function($scope, $window) {
+	$scope.current = null;
+	$scope.alternate = null;
+	$scope.alternateURL = null
+	if($window.location.pathname === "/company")
+	{
+		$scope.current = "Company";
+		$scope.alternate = "Applicant";
+		$scope.alternateURL = "/";
+	}
+	else
+	{
+		$scope.current = "Applicant";
+		$scope.alternate = "Company";
+		$scope.alternateURL = "/company";
+	}
+});
+
+
 cluelessApp.controller('loginModalCtrl', function($scope) {
 
 });
 
-cluelessApp.controller('applicantLandingPageCtrl', function($scope) {
-
-});
-
-cluelessApp.controller('companyLandingPageCtrl', function($scope) {
-
-});
 
 cluelessApp.controller('registerModalCtrl', function($scope, $modal) {
 	$scope.launchCompanyRegisterModal = function() {
