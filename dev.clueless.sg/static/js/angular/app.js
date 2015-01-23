@@ -16,7 +16,7 @@ cluelessApp.config(['$interpolateProvider', function($interpolateProvider) {
   $interpolateProvider.endSymbol(']}');
 }]);
 
-cluelessApp.controller('indexCtrl', function($scope, $modal) {
+cluelessApp.controller('indexCtrl', function($scope, $modal, $window) {
 	$scope.launchLogin = function() {
 		var modalInstance = $modal.open({
 		      templateUrl: 'static/angular_templates/loginModal.html',
@@ -29,24 +29,15 @@ cluelessApp.controller('indexCtrl', function($scope, $modal) {
 		      templateUrl: 'static/angular_templates/choosePersonRegisterModal.html',
 		      controller: 'registerModalCtrl'
     	});
-	}
-});
-
-cluelessApp.controller('headerCtrl', function($scope, $window) {
+	};
 	$scope.current = null;
-	$scope.alternate = null;
-	$scope.alternateURL = null
 	if($window.location.pathname === "/company")
 	{
 		$scope.current = "Company";
-		$scope.alternate = "Applicant";
-		$scope.alternateURL = "/";
 	}
 	else
 	{
 		$scope.current = "Applicant";
-		$scope.alternate = "Company";
-		$scope.alternateURL = "/company";
 	}
 });
 
