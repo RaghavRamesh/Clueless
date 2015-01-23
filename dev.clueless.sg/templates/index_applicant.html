@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>Clueless | Applicant</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="static/img/favicon.ico">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="static/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/one.style.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="static/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="static/plugins/font-awesome/css/font-awesome.min.css">    
+    <link rel="stylesheet" href="static/plugins/pace/pace-flash.css">
+    <link rel="stylesheet" href="static/plugins/owl-carousel/owl.carousel.css">    
+    <link rel="stylesheet" href="static/plugins/revolution-slider/css/settings.css" type="text/css" media="screen">
+    <!--[if lt IE 9]><link rel="stylesheet" href="static/plugins/revolution-slider/css/settings-ie8.css" type="text/css" media="screen"><![endif]-->
+    <link rel="stylesheet" type="text/css" href="static/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css">
+    <link rel="stylesheet" type="text/css" href="static/plugins/cube-portfolio/templates/lightbox-gallery/css/main.css">
+
+    <!-- CSS Theme -->    
+    <link rel="stylesheet" href="static/css/theme-colors/red.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="static/css/custom.css">
+</head>
+
+<!-- 
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" data-spy="scroll" class="demo-lightbox-gallery" ng-app="app" ng-controller="indexCtrl">
+    <div></div>
+
+    <!-- Navbar -->
+    <div ng-include="'static/angular_templates/navbar.html'"></div>
+    
+    <!-- Main content -->
+    <section id="intro" class="intro-section">
+        <div class="fullscreenbanner-container">
+            <div class="fullscreenbanner">
+                <ul>
+                    <!-- SLIDE 1 -->
+                    <li data-transition="curtain-1" data-slotamount="5" data-masterspeed="700" data-title="Slide 1">
+                        <!-- MAIN IMAGE -->
+                        <img src="static/img/sliders/revolution/bg1.jpg" alt="slidebg1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+
+                        <!-- LAYERS -->
+                        <div class="tp-caption rs-caption-1 sft start"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="100"
+                            data-speed="800"
+                            data-start="2000"
+                            data-easing="Back.easeInOut"
+                            data-endspeed="300">
+                            FIND CHALLENGING INTERNSHIPS
+                        </div>
+
+                        <!-- LAYER -->
+                        <div class="tp-caption rs-caption-2 sft"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="200"
+                            data-speed="1000"
+                            data-start="3000"
+                            data-easing="Power4.easeOut"
+                            data-endspeed="300"
+                            data-endeasing="Power1.easeIn"
+                            data-captionhidden="off"
+                            style="z-index: 6">
+                            Find roles across a spectrum of industries in Singapore and work on problems that directly impact the business. <br/>Seriously, it’s nothing like a school project.
+                        </div>
+
+                        <!-- LAYER -->
+                        <div class="tp-caption rs-caption-3 sft"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="360"
+                            data-speed="800"
+                            data-start="3500"
+                            data-easing="Power4.easeOut"
+                            data-endspeed="300"
+                            data-endeasing="Power1.easeIn"
+                            data-captionhidden="off"
+                            style="z-index: 6">
+                            <span><a class="btn-u btn-brd btn-brd-hover btn-u-light" ng-click="launchLogin()">Login</a></span>
+                            <span><a class="btn-u btn-brd btn-brd-hover btn-u-light" ng-click="launchRegister()">Register</a></span>
+                        </div>
+                    </li>
+
+                    <!-- SLIDE 2 -->
+                    <li data-transition="slideup" data-slotamount="5" data-masterspeed="1000" data-title="Slide 2">
+                        <!-- MAIN IMAGE -->
+                        <img src="static/img/sliders/revolution/bg2.jpg" alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+
+                        <!-- LAYERS -->
+                        <div class="tp-caption rs-caption-1 sft start"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="100"
+                            data-speed="800"
+                            data-start="1500"
+                            data-easing="Back.easeInOut"
+                            data-endspeed="300">
+                            TRY 2 ROLES IN AN INTERNSHIP
+                        </div>
+
+                        <!-- LAYER -->
+                        <div class="tp-caption rs-caption-2 sft"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="200"
+                            data-speed="1000"
+                            data-start="2500"
+                            data-easing="Power4.easeOut"
+                            data-endspeed="300"
+                            data-endeasing="Power1.easeIn"
+                            data-captionhidden="off"
+                            style="z-index: 6">
+                            Maximise your potential and make the most of your experience by trying and learning 2 roles simultaneously. 
+                            <br />In the real world, you need to learn to multi-task.                           
+                        </div>
+
+                        <!-- LAYER -->
+                        <div class="tp-caption rs-caption-3 sft"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="360"
+                            data-speed="800"
+                            data-start="3500"
+                            data-easing="Power4.easeOut"
+                            data-endspeed="300"
+                            data-endeasing="Power1.easeIn"
+                            data-captionhidden="off"
+                            style="z-index: 6">
+                            <span class="page-scroll"><a href="#about" class="btn-u btn-brd btn-brd-hover btn-u-light">Learn More</a></span>
+                            <span class="page-scroll"><a href="#portfolio" class="btn-u btn-brd btn-brd-hover btn-u-light">Our Work</a></span>
+                        </div>
+                    </li>
+
+                    <!-- SLIDE 3 -->
+                    <li data-transition="slideup" data-slotamount="5" data-masterspeed="700"  data-title="Slide 3">
+                        <!-- MAIN IMAGE -->
+                        <img src="static/img/sliders/revolution/bg3.jpg"  alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+
+                        <!-- LAYERS -->
+                        <div class="tp-caption rs-caption-1 sft start"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="110"
+                            data-speed="800"
+                            data-start="1500"
+                            data-easing="Back.easeInOut"
+                            data-endspeed="300">
+                            MAKE APPLYING TO JOBS A LOT EASIER
+                        </div>
+
+                        <!-- LAYER -->
+                        <div class="tp-caption rs-caption-2 sfb"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="210"
+                            data-speed="800"
+                            data-start="2500"
+                            data-easing="Power4.easeOut"
+                            data-endspeed="300"
+                            data-endeasing="Power1.easeIn"
+                            data-captionhidden="off"
+                            style="z-index: 6">
+                            You can forget copy pasting your resume and cover letter time and again. 
+                            <br/>We make applying faster, more efficient and less pull-your-hair-out frustrating!
+
+                        </div>
+
+                        <!-- LAYER -->
+                        <div class="tp-caption rs-caption-3 sfb"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="370"
+                            data-speed="800"
+                            data-start="3500"
+                            data-easing="Power4.easeOut"
+                            data-endspeed="300"
+                            data-endeasing="Power1.easeIn"
+                            data-captionhidden="off"
+                            style="z-index: 6">
+                            <span class="page-scroll"><a href="#about" class="btn-u btn-brd btn-brd-hover btn-u-light">Learn More</a></span>
+                            <span class="page-scroll"><a href="#portfolio" class="btn-u btn-brd btn-brd-hover btn-u-light">Our Work</a></span>
+                        </div>
+                    </li>                    
+                </ul>
+                <div class="tp-bannertimer tp-bottom"></div>
+                <div class="tp-dottedoverlay twoxtwo"></div>
+            </div>
+        </div>
+    </section>
+    <!-- End Intro Section -->
+
+    <!--  About Section -->
+    <section id="about" class="about-section section-first">
+        
+
+        <div class="about-image bg-grey">
+            <div class="container">
+                <div class="title-v1">
+                    <h1>We used to be <span class="color-green">clueless</span>!</h1>
+                    <p>
+                        Its almost <strong>impossible</strong> these days, to get an internship if you’re in year 1 or 2.
+                        (trust us, we’ve been there).<br/>
+                        We strongly believe that what matters more is your <strong>personality,</strong> 
+                        your <strong>skills</strong> and your <strong>ability</strong> to get shit done. <br/>
+                        (Year 3s and 4s can apply too, we care more about your capability than your seniority.)
+                    </p>                
+                </div>
+                <br/>
+                <br/>
+            </div>
+        </div>        
+
+        <div class="container content-lg">
+            <div class="title-v1">
+                <h2>Our Vision And Mission</h2>
+                <p>
+                    We want to make applications <strong>fair</strong>, <strong>simple</strong> and <strong>less painstaking</strong>. <br/>
+                    What do you have to do now?
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 content-boxes-v3 margin-bottom-40">
+                    <div class="clearfix col-md-6">
+                        <i class="icon-custom icon-md rounded-x icon-bg-u icon-line icon-trophy"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">Step 1</h2>
+                            <p>Register yourself on Clueless</p>
+                        </div>
+                    </div>
+                    <div class="clearfix col-md-6">
+                        <i class="icon-custom icon-md rounded-x icon-bg-u icon-line icon-directions"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">Step 2</h2>
+                            <p>Select the companies you want to apply to</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 content-boxes-v3 margin-bottom-40">
+                    <div class="clearfix col-md-6">
+                        <i class="icon-custom icon-md rounded-x icon-bg-u icon-line icon-diamond"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">Step 3</h2>
+                            <p>Fill in the necessary details, upload the necessary documents, and put your heart into answering the questions the companies want answered.</p>
+                        </div>
+                    </div>
+                    <div class="clearfix col-md-6">
+                        <i class="icon-custom icon-md rounded-x icon-bg-u icon-line icon-diamond"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">Step 4</h2>
+                            <p>Voila! You’re done. We’ll get in touch with you if you get through.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+
+        <div class="parallax-quote parallaxBg">
+            <div class="container">
+                <div class="parallax-quote-in">
+                    <p>Don’t do what everyone else does <span class="color-green">because it’s safe, convenient or because it pays</span>. <br>Figure out what you were really put on this Earth to do</p>
+                    <small>- My Introspective Self -</small>
+                </div>
+            </div>
+        </div>        
+
+        <div class="team-v1 bg-grey content-lg">
+            <div class="container">
+                <div class="title-v1">
+                    <h2>Meet Our Team</h2>
+                    <p>We <strong>meet</strong> and get to know you. You tell us and we listen. <br> 
+                    We will help you <strong>discover</strong> your career and <strong>realize</strong> your dreams.</p>
+                </div>
+
+                <ul class="list-unstyled row">
+                    <li class="col-sm-3 col-xs-6 md-margin-bottom-30">
+                        <div class="team-img">
+                            <img class="img-responsive" src="static/img/team/img1-md.jpg" alt="">
+                            <ul>
+                                <!-- <li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-twitter"></i></a></li> -->
+                                <li><a href="https://www.facebook.com/manasa62"><i class="icon-custom icon-sm rounded-x fa fa-facebook"></i></a></li>
+                                <!-- <li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-google-plus"></i></a></li> -->
+                            </ul>
+                        </div>
+                        <h3>Manasa Babu</h3>
+                        <h4>/ Founder &amp; CEO</h4>
+                        <p>Mechanical Engineer. Dancer.</p>
+                    </li>
+                    <li class="col-sm-3 col-xs-6 md-margin-bottom-30">
+                        <div class="team-img">
+                            <img class="img-responsive" src="static/img/team/img2-md.jpg" alt="">
+                            <ul>
+                                <!-- <li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-twitter"></i></a></li> -->
+                                <li><a href="https://www.facebook.com/raghav213"><i class="icon-custom icon-sm rounded-x fa fa-facebook"></i></a></li>
+                                <!-- <li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-google-plus"></i></a></li> -->
+                            </ul>
+                        </div>
+                        <h3>Raghav Ramesh</h3>
+                        <h4>/ Co-Founder &amp; Technical Co-Lead</h4>
+                        <p>Computer Engineer. Cricketer.</p>
+                    </li>
+                    <li class="col-sm-3 col-xs-6">
+                        <div class="team-img">
+                            <img class="img-responsive" src="static/img/team/img3-md.jpg" alt="">
+                            <ul>
+                                <!-- <li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-twitter"></i></a></li> -->
+                                <li><a href="https://www.facebook.com/shreeti.kapa"><i class="icon-custom icon-sm rounded-x fa fa-facebook"></i></a></li>
+                                <!-- <li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-google-plus"></i></a></li> -->
+                            </ul>
+                        </div>
+                        <h3>Shreeti Kapa</h3>
+                        <h4>/ Co-Founder &amp; CFO</h4>
+                        <p>Investment Banker. Athlete.</p>
+                    </li>
+                    <li class="col-sm-3 col-xs-6">
+                        <div class="team-img">
+                            <img class="img-responsive" src="static/img/team/img4-md.jpg" alt="">
+                            <ul>
+                                <!-- <li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-twitter"></i></a></li> -->
+                                <li><a href="https://www.facebook.com/akaash.gupta1"><i class="icon-custom icon-sm rounded-x fa fa-facebook"></i></a></li>
+                                <!-- <li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-google-plus"></i></a></li> -->
+                            </ul>
+                        </div>
+                        <h3>Akaash Gupta</h3>
+                        <h4>/ Technical Co-Director</h4>
+                        <p>Computer Engineer. Artist.</p>
+                    </li>
+                </ul>                
+            </div>
+        </div>
+
+        <div class="parallax-counter parallaxBg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="counters">
+                            <span class="counter"></span>   
+                            <h4>Users</h4>
+                        </div>    
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="counters">
+                            <span class="counter">1</span> 
+                            <h4>Projects</h4>
+                        </div>    
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="counters">
+                            <span class="counter">4</span>
+                            <h4>Team Members</h4>
+                        </div>    
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="counters">
+                            <span class="counter"></span>
+                            <h4>Awards</h4>
+                        </div>    
+                    </div>
+                </div>            
+            </div>
+        </div>        
+    </section>
+    <!--  About Section -->
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container content-lg">
+            <div class="title-v1">
+                <h2>Our Services</h2>
+                <p>We don’t want you to pull out the dollars from your wallet, but we do need money to live, breathe and eat food. So we charge <strong>10%</strong> of your <strong>1st month’s</strong> salary (capped at a maximum of <strong>$100</strong>), but don’t worry, the company will pay on your behalf and deduct it from your salary later :)
+                <br/>
+                We help you <strong>discover</strong> yourselves.</p>                
+            </div>            
+    
+            <div class="row service-box-v1">
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-block service-block-default">
+                        <i class="icon-custom icon-lg icon-bg-u rounded-x fa fa-lightbulb-o"></i>
+                        <h2 class="heading-md">Recruitment</h2>
+                        <p>We facilitate internships for you</p>
+                        <ul class="list-unstyled">
+                            <li>Job Listings</li>
+                            <li>Applications &amp; Assessments</li>
+                            <li>Interviews</li>
+                        </ul>                        
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-block service-block-default">
+                        <i class="icon-custom icon-lg icon-bg-u rounded-x icon-line icon-present"></i>
+                        <h2 class="heading-sm">Career Discovery</h2>
+                        <p>We help you take the first step</p>
+                        <ul class="list-unstyled">
+                            <li>Resume Building</li>
+                            <li>Consulting &amp; Counselling</li>
+                            <li>Senior Sharing</li>
+                        </ul>                        
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="service-block service-block-default">            
+                        <i class="icon-custom icon-lg icon-bg-u rounded-x icon-line icon-rocket"></i>
+                        <h2 class="heading-sm">Career Development</h2>
+                        <p>We help you enhance your career</p>
+                        <ul class="list-unstyled">
+                            <li>Technical Resources</li>
+                            <li>Tips to succeed at workplace</li>
+                            <li>Recommendations</li>
+                        </ul>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+                   
+    </section>
+    <!-- End Services Section -->
+
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="about-section">
+        <ul class="list-unstyled row portfolio-box-v1">
+            <li class="col-sm-4">
+                <img class="img-responsive" src="static/img/mockup/img1.jpg" alt="">
+                <div class="portfolio-box-v1-in">
+                    <h3>Collective Package</h3>
+                    <p>Web Design, Mock-up</p>
+                    <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
+                </div>
+            </li>
+            <li class="col-sm-4">
+                <img class="img-responsive" src="static/img/mockup/img2.jpg" alt="">
+                <div class="portfolio-box-v1-in">
+                    <h3>Ahola Company</h3>
+                    <p>Brand Design, UI</p>
+                    <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
+                </div>
+            </li>
+            <li class="col-sm-4">
+                <img class="img-responsive" src="static/img/mockup/img4.jpg" alt="">
+                <div class="portfolio-box-v1-in">
+                    <h3>Allan Project</h3>
+                    <p>Web Development, HTML5</p>
+                    <a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>
+                </div>
+            </li>
+        </ul>
+        
+        <div class="call-action-v1">
+            <div class="container">
+                <div class="call-action-v1-box">
+                    <div class="call-action-v1-in">
+                        <p>We have managed to create many a connections between applicants and their dream companies. And we will attempt to do the same for you.</p>
+                    </div>
+                    <div class="call-action-v1-in inner-btn page-scroll">
+                        <a href="#portfolio" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-block">View Our Success stories</a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="clients-section parallaxBg">
+            <div class="container">
+                <div class="title-v1">
+                    <h2>Our Clients</h2>
+                </div>            
+                <ul class="owl-clients-v2">
+                    <li class="item"><a href="#"><img src="static/img/clients/national-geographic.png" alt=""></a></li>
+                    <li class="item"><a href="#"><img src="static/img/clients/inspiring.png" alt=""></a></li>
+                    <li class="item"><a href="#"><img src="static/img/clients/fred-perry.png" alt=""></a></li>
+                    <li class="item"><a href="#"><img src="static/img/clients/emirates.png" alt=""></a></li>
+                    <li class="item"><a href="#"><img src="static/img/clients/baderbrau.png" alt=""></a></li>
+                    <li class="item"><a href="#"><img src="static/img/clients/inspiring.png" alt=""></a></li>
+                </ul>            
+            </div>
+        </div>
+
+        <div class="testimonials-v3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <ul class="list-unstyled owl-ts-v1">
+                            <li class="item">
+                                <img class="rounded-x img-bordered" src="static/img/team/img3-sm.jpg" alt="">
+                                <div class="testimonials-v3-title">
+                                    <p>Manasa Babu</p>
+                                    <span>Founder &amp; CEO</span>
+                                </div>
+                                <p>I just wanted to tell you how much I like to use Unify - <strong>it's so sleek and elegant!</strong> <br>
+                                The customisation options you implemented are countless, and I feel sorry I can't use them all. Good job, and keep going!<p>
+                            </li>
+                            <li class="item">
+                                <img class="rounded-x img-bordered" src="static/img/team/img2-sm.jpg" alt="">
+                                <div class="testimonials-v3-title">
+                                    <p>Raghav Ramesh</p>
+                                    <span>Founder &amp; Technical Co-Lead</span>
+                                </div>                                
+                                <p>Keep up the great work. Your template is by far the best on the market in terms of features, quality and value or money.</p>
+                            </li>
+                            <li class="item">
+                                <img class="rounded-x img-bordered" src="static/img/team/img1-sm.jpg" alt="">
+                                <div class="testimonials-v3-title">
+                                    <p>Akaash Gupta</p>
+                                    <span>Technical Co-Lead</span>
+                                </div>
+                                <p>So far I really like the theme. I am looking forward to exploring more of your themes. Thank you!</p>
+                            </li>
+                        </ul>
+                    </div>                    
+                </div>
+            </div>
+        </div>                 
+    </section>
+    <!-- End Portfolio Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contacts-section">
+        <div class="container content-lg">
+            <div class="title-v1">
+                <h2>Contact Us</h2>
+                <p>You can ask us if you have any questions, we’re nice people.<br>
+            </div>
+
+            <div class="row contacts-in">
+                <div class="col-md-6 md-margin-bottom-40">
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-home"></i> We’re Nomads. We don’t need no office.</li>
+                        <li><i class="fa fa-phone"></i> No cell reception currently.</li>
+                        <li><i class="fa fa-envelope"></i> <a>recruit.clueless@gmail.com</a></li>
+                        <li><i class="fa fa-globe"></i> <a href="http://www.clueless.sg">www.clueless.sg</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6">
+                    <form>
+                        <label>Name</label>
+                        <div class="row margin-bottom-20">
+                            <div class="col-md-7 col-md-offset-0">
+                                <input type="text" class="form-control">
+                            </div>                
+                        </div>
+                        
+                        <label>Email <span class="color-red">*</span></label>
+                        <div class="row margin-bottom-20">
+                            <div class="col-md-7 col-md-offset-0">
+                                <input type="text" class="form-control">
+                            </div>                
+                        </div>
+                        
+                        <label>Message</label>
+                        <div class="row margin-bottom-20">
+                            <div class="col-md-11 col-md-offset-0">
+                                <textarea rows="8" class="form-control"></textarea>
+                            </div>                
+                        </div>
+                        
+                        <p><button type="submit" class="btn-u btn-brd btn-brd-hover btn-u-dark">Send Message</button></p>
+                    </form> 
+                </div>
+            </div>            
+        </div>
+
+        <div class="copyright-section">
+            <p>2015 &copy; All Rights Reserved. Clueless.</p>
+            <ul class="social-icons">
+                <li><a href="#" data-original-title="Facebook" class="social_facebook rounded-x"></a></li>
+                <li><a href="#" data-original-title="Twitter" class="social_twitter rounded-x"></a></li>
+                <li><a href="#" data-original-title="Goole Plus" class="social_googleplus rounded-x"></a></li>
+                <li><a href="#" data-original-title="Pinterest" class="social_pintrest rounded-x"></a></li>
+                <li><a href="#" data-original-title="Linkedin" class="social_linkedin rounded-x"></a></li>
+            </ul>
+            <span class="page-scroll"><a href="#intro"><i class="fa fa-angle-double-up back-to-top"></i></a></span>
+        </div>
+    </section>
+    <!-- End Contact Section -->
+   
+
+    <!-- JS Global Compulsory -->
+    <script type="text/javascript" src="static/plugins/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- JS Implementing Plugins -->
+    <script type="text/javascript" src="static/plugins/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="static/plugins/pace/pace.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jquery.parallax.js"></script>
+    <script type="text/javascript" src="static/plugins/counter/waypoints.min.js"></script>
+    <script type="text/javascript" src="static/plugins/counter/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="static/plugins/owl-carousel/owl.carousel.js"></script>    
+    <script type="text/javascript" src="static/plugins/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="static/plugins/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="static/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+    <script type="text/javascript" src="static/plugins/cube-portfolio/templates/lightbox-gallery/js/main.js"></script>
+    <!-- JS Page Level-->
+    <script type="text/javascript" src="static/js/one.app.js"></script>
+    <script type="text/javascript" src="static/js/plugins/pace-loader.js"></script>
+    <script type="text/javascript" src="static/js/plugins/owl-carousel.js"></script>
+    <script type="text/javascript" src="static/js/plugins/style-switcher.js"></script>    
+    <script type="text/javascript" src="static/js/plugins/revolution-slider.js"></script>
+    <script type="text/javascript" src="static/plugins/back-to-top.js"></script>
+    <!-- Angular files -->
+    <script type="text/javascript" src="static/js/angular.js"></script>
+    <script type="text/javascript" src="static/js/angular-route.js"></script>
+    <script type="text/javascript" src="static/js/ui-bootstrap-tpls-0.12.0.js"></script>
+    <script type="text/javascript" src="static/js/angular/app.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            App.init();
+            App.initCounter();
+            App.initParallaxBg();
+            OwlCarousel.initOwlCarousel();
+            StyleSwitcher.initStyleSwitcher();            
+            RevolutionSlider.initRSfullScreen();
+        });
+    </script>
+    <!--[if lt IE 9]>
+        <script src="static/plugins/respond.js"></script>
+        <script src="static/plugins/html5shiv.js"></script>
+    <![endif]--> 
+</body>
+</html>
