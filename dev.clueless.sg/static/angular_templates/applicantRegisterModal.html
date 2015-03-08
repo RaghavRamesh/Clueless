@@ -1,4 +1,4 @@
-<div>
+<div id="applicant-register-modal">
     <!--Reg Block-->
     <div class="reg-block modal-body">
         <div class="reg-block-header">
@@ -7,49 +7,51 @@
 
         <div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <input type="text" class="form-control" placeholder="Full name">
+            <input type="text" class="form-control" ng-model="name"placeholder="Full name">
         </div>
         <div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-            <input type="text" class="form-control" placeholder="Date of birth">
+            <input type="text" class="form-control" placeholder="Date of birth" datepicker-popup="yyyy-MM-dd" ng-model="date" is-open="opened" max-date="maxDate" close-text="Close" ng-click="open()">
         </div>
-        <div class="input-group margin-bottom-20">
+        <!--<div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
             <input type="text" class="form-control" placeholder="Phone number with country code">
-        </div>
+        </div>-->
         <div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-            <input type="text" class="form-control" placeholder="E-mail">
+            <input type="text" class="form-control" ng-model="email" placeholder="E-mail">
         </div>
-        <div class="input-group margin-bottom-20">
+        <!--<div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
             <input type="text" class="form-control" placeholder="Confirm e-mail">
+        </div>-->
+        <div class="input-group margin-bottom-20">
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            <input class="form-control" type = "password" ng-model="password" placeholder="Password (min 8 letters)">
         </div>
         <div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-            <input type="text" class="form-control" placeholder="Password">
+            <input class="form-control" type = "password" ng-model="confirmPassword" placeholder="Confirm password">
         </div>
-        <div class="input-group margin-bottom-20">
-            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-            <input type="text" class="form-control" placeholder="Confrim password">
-        </div>
-        <div class="input-group margin-bottom-20">
+        <!--<div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
             <input type="text" class="form-control" placeholder="Country of residence">
-        </div>
-        <div class="input-group margin-bottom-20">
+        </div>-->
+        <!--<div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-skype"></i></span>
             <input type="text" class="form-control" placeholder="Skype id">
-        </div>
+        </div>-->
         <hr>
-                        
+        <div class="alert alert-success col-md-10 col-md-offset-1" ng-show="success" role="alert">Registration successful!</div>   
+        <div class="alert alert-danger col-md-10 col-md-offset-1" ng-show="fail" role="alert">{[failMessage]}</div>                         
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <button type="submit" class="btn-u btn-block">Sign Up</button>
+                <button type="submit" class="btn-u btn-block" ng-click="registerApplicant()">Sign Up</button>
             </div>
         </div>
+
     </div>
     <!--End Reg Block-->
+    <div class="loading-modal"><!-- Place at bottom of page --></div>
 </div><!--/container-->
-
 

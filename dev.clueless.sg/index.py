@@ -7,3 +7,4 @@ class IndexApplicant(flask.views.MethodView):
 class IndexCompany(flask.views.MethodView):
     def get(self):
         return flask.render_template('index_company.html')
+
