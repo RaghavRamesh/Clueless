@@ -45,7 +45,7 @@
         <div class="alert alert-danger col-md-10 col-md-offset-1" ng-show="fail" role="alert">{[failMessage]}</div>                 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <button type="submit" class="btn-u btn-block" ng-click="registerCompany()">Sign Up</button>
+                <button type="submit" ng-disabled="isDisabled" class="btn-u btn-block register-button" ng-click="registerCompany()">Sign Up</button>
             </div>
         </div>
     </div>

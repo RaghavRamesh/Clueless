@@ -19,7 +19,7 @@ cluelessApp.config(['$interpolateProvider', function($interpolateProvider) {
 cluelessApp.controller('indexCtrl', function($scope, $modal, $window) {
 	$scope.launchLogin = function() {
 		var modalInstance = $modal.open({
-		      templateUrl: 'static/angular_templates/loginModal.html',
+		      templateUrl: 'static/angular_templates/choosePersonLoginModal.html',
 		      controller: 'loginModalCtrl'
     	});
 	};
@@ -42,16 +42,6 @@ cluelessApp.controller('indexCtrl', function($scope, $modal, $window) {
 });
 
 
-cluelessApp.controller('loginModalCtrl', function($scope, $modal) {
-	$scope.launchRegister = function() {
-		var modalInstance = $modal.open({
-		      templateUrl: 'static/angular_templates/choosePersonRegisterModal.html',
-		      controller: 'registerModalCtrl'
-    	});
-	};
-});
-
-
 cluelessApp.controller('registerModalCtrl', function($scope, $modal) {
 	$scope.launchCompanyRegisterModal = function() {
 		var modalInstance = $modal.open({
@@ -68,34 +58,40 @@ cluelessApp.controller('registerModalCtrl', function($scope, $modal) {
 	}
 });
 
-cluelessApp.controller('applicantRegisterModalCtrl', function($scope, $modalInstance) {
-	$scope.name = ""; $scope.password = ""; $scope.date = new Date(); $scope.confirmPassword = ""; $scope.email="";
-	$scope.maxDate = new Date();
-	$scope.success = false;
-	$scope.fail = false;
-	$scope.failMessage= "";
-	$scope.opened = false;
-	$scope.open = function(){
-		$scope.opened = true;
+
+cluelessApp.controller('loginModalCtrl', function($scope, $modal) {
+	$scope.launchCompanyLoginModal = function() {
+		
+		var modalInstance = $modal.open({
+		      templateUrl: 'static/angular_templates/loginModal.html',
+		      controller: 'companyLoginModalCtrl'
+    	});
 	}
-	$scope.registerApplicant = function(){
-		if(!$scope.date){
-			$scope.fail = true;
-			$scope.failMessage = "Please enter a valid date"
-		}
-		else{
-			var date = $scope.date.getFullYear()+ '-' + ($scope.date.getMonth() + 1) + '-' + $scope.date.getDate();
+
+	$scope.launchApplicantLoginModal = function() {
+		
+		var modalInstance = $modal.open({
+		      templateUrl: 'static/angular_templates/loginModal.html',
+		      controller: 'applicantLoginModalCtrl'
+    	});
+	}
+});
+
+cluelessApp.controller('companyLoginModalCtrl', function($scope){
+	$scope.email = "";
+	$scope.role = "Company";
+	$scope.pw = "";
+	$scope.fail = false;
+	$scope.login = function(){
 		$.ajax({
 			type: 'POST',
-			url:'/register/applicant',
-			data: {name:$scope.name, dob:date, email:$scope.email, pw:$scope.password, cpw:$scope.confirmPassword}
+			url: '/login',
+			data: {email: $scope.email, pw: $scope.pw, role: 'companies'}
 		}).done(function(data){
 			data = JSON.parse(data);
-			$scope.success = false;
-			$scope.fail = false;
 			if(data['status'] =="ok"){
-				$scope.success= true;
-				$scope.$apply();
+				$scope.fail = false;
+				console.log("Success!")
 			}
 			else if(data['status'] =="fail"){
 				$scope.fail = true;
@@ -106,6 +102,83 @@ cluelessApp.controller('applicantRegisterModalCtrl', function($scope, $modalInst
 		.fail(function(data){
 			$scope.fail = true;
 			$scope.failMessage = "An unexpected error occurred. Please try again later"
+		});
+
+	}
+});
+
+cluelessApp.controller('applicantLoginModalCtrl', function($scope){
+	$scope.email = "";
+	$scope.role = "Applicant";
+	$scope.pw = "";
+	$scope.fail = false;
+	$scope.login = function(){
+		$.ajax({
+			type: 'POST',
+			url: '/login',
+			data: {email: $scope.email, pw: $scope.pw, role: 'applicants'}
+		}).done(function(data){
+			data = JSON.parse(data);
+			if(data['status'] =="ok"){
+				$scope.fai = false;
+				console.log("Success!")
+			}
+			else if(data['status'] =="fail"){
+				$scope.fail = true;
+				$scope.failMessage = data['msg'];
+				$scope.$apply();
+			}
+		})
+		.fail(function(data){
+			$scope.fail = true;
+			$scope.failMessage = "An unexpected error occurred. Please try again later"
+		});
+
+	}
+});
+
+cluelessApp.controller('applicantRegisterModalCtrl', function($scope, $modalInstance) {
+	$scope.name = ""; $scope.password = ""; $scope.date = new Date(); $scope.confirmPassword = ""; $scope.email="";
+	$scope.maxDate = new Date();
+	$scope.success = false;
+	$scope.fail = false;
+	$scope.failMessage= "";
+	$scope.opened = false;
+	$scope.isDisabled = false;
+	$scope.open = function(){
+		$scope.opened = true;
+	}
+	$scope.registerApplicant = function(){
+		$scope.success = false;
+		$scope.fail = false;
+		if(!$scope.date){
+			$scope.fail = true;
+			$scope.failMessage = "Please enter a valid date"
+		}
+		else{
+			var date = $scope.date.getFullYear()+ '-' + ($scope.date.getMonth() + 1) + '-' + $scope.date.getDate();
+			$scope.isDisabled = true;
+		$.ajax({
+			type: 'POST',
+			url:'/register/applicant',
+			data: {name:$scope.name, dob:date, email:$scope.email, pw:$scope.password, cpw:$scope.confirmPassword}
+		}).done(function(data){
+			data = JSON.parse(data);
+			if(data['status'] =="ok"){
+				$scope.success= true;
+				$scope.$apply();
+			}
+			else if(data['status'] =="fail"){
+				$scope.fail = true;
+				$scope.failMessage = data['msg'];
+				$scope.$apply();
+			}
+			$scope.isDisabled = false;
+		})
+		.fail(function(data){
+			$scope.fail = true;
+			$scope.failMessage = "An unexpected error occurred. Please try again later"
+			$scope.isDisabled = false;
 		});
 	  }
 	}
@@ -118,19 +191,17 @@ cluelessApp.controller('companyRegisterModalCtrl', function($scope, $modalInstan
 	$scope.success = false;
 	$scope.fail = false;
 	$scope.failMessage= "";
-	/*$('#company-register-modal').on({
-     ajaxStart: function() { $('#company-register-modal').addClass("loading");    },
-     ajaxStop: function() { $('#company-register-modal').removeClass("loading"); }    
-	});*/
+	$scope.isDisabled = false;
 	$scope.registerCompany = function(){
+		$scope.success = false;
+		$scope.fail = false;
+		$scope.isDisabled = true;
 		$.ajax({
 			type: 'POST',
 			url:'/register/company',
 			data: {name:$scope.name, email:$scope.email, pw:$scope.password, cpw:$scope.confirmPassword}
 		}).done(function(data){
 			data = JSON.parse(data);
-			$scope.success = false;
-			$scope.fail = false;
 			if(data['status'] =="ok"){
 				$scope.success= true;
 				$scope.$apply();
@@ -140,10 +211,12 @@ cluelessApp.controller('companyRegisterModalCtrl', function($scope, $modalInstan
 				$scope.failMessage = data['msg'];
 				$scope.$apply();
 			}
+			$scope.isDisabled = false;
 		})
 		.fail(function(data){
 			$scope.fail = true;
-			$scope.failMessage = "An unexpected error occurred. Please try again later"
+			$scope.failMessage = "An unexpected error occurred. Please try again later";
+			$scope.isDisabled = false;
 		});
 	}
 

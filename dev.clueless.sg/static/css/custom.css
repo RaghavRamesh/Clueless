@@ -16,6 +16,10 @@
   border-right: none;
 }
 
+.register-button{
+  cursor: pointer;
+}
+
 
 .loading-modal {
     display:    none;
