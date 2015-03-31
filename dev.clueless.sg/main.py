@@ -117,9 +117,9 @@ def send_verification_email(role, toAddress):
 	message.set_subject("Clueless account verification")
 	randomLink = generate_random_url_link(toAddress)
 	if role=='c':
-		message.set_html("<p><b>Welcome to Clueless!</b> Please verify your account by visiting the <a href = 'http://localhost:5000/verify/company?id=" + randomLink+ "'> verification link </a>" + " and complete the last step of your registration.</p></br><p style='margin:1em 0'>Should you ever encounter problems with your account or forget your password we will contact you at this address.</p></br><p style='margin:1em 0'>Enjoy!</p><p style='margin:1em 0'>The Clueless Team</p><br>")
+		message.set_html("<p><b>Welcome to Clueless!</b> Please verify your account by visiting the <a href = 'http://dev.clueless.sg/verify/company?id=" + randomLink+ "'> verification link </a>" + " and complete the last step of your registration.</p></br><p style='margin:1em 0'>Should you ever encounter problems with your account or forget your password we will contact you at this address.</p></br><p style='margin:1em 0'>Enjoy!</p><p style='margin:1em 0'>The Clueless Team</p><br>")
 	else:
-		message.set_html("<p><b>Welcome to Clueless!</b> Please verify your account by visiting the <a href = 'http://localhost:5000/verify/applicant?id=" + randomLink+ "'> verification link </a>" + " and complete the last step of your registration.</p></br><p style='margin:1em 0'>Should you ever encounter problems with your account or forget your password we will contact you at this address.</p></br><p style='margin:1em 0'>Enjoy!</p><p style='margin:1em 0'>The Clueless Team</p><br>")
+		message.set_html("<p><b>Welcome to Clueless!</b> Please verify your account by visiting the <a href = 'http://dev.clueless.sg/verify/applicant?id=" + randomLink+ "'> verification link </a>" + " and complete the last step of your registration.</p></br><p style='margin:1em 0'>Should you ever encounter problems with your account or forget your password we will contact you at this address.</p></br><p style='margin:1em 0'>Enjoy!</p><p style='margin:1em 0'>The Clueless Team</p><br>")
 	
 	sg.send(message)
 	return randomLink
