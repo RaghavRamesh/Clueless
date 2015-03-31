@@ -31,7 +31,7 @@
         <div class="alert alert-danger col-md-10 col-md-offset-1" ng-show="fail" role="alert">{[failMessage]}</div>                   
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <button ng-click="login()" class="btn-u btn-block">Log In</button>
+                <button ng-click="login()" ng-disabled="isDisabled" class="btn-u btn-block">Log In</button>
             </div>
         </div>
     </div>

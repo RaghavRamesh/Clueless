@@ -16,6 +16,22 @@ cluelessApp.config(['$interpolateProvider', function($interpolateProvider) {
   $interpolateProvider.endSymbol(']}');
 }]);
 
+cluelessApp.factory('userSession', function() {
+  var name ="";
+  var role = "";
+  var id = 1;
+  var newSession = function(n, r){
+   	name = n;
+   	role = r;
+   }
+  return {
+      "name" : name,
+      "role" : role,
+      "id": id,
+      newSession : newSession
+  };
+});
+
 cluelessApp.controller('indexCtrl', function($scope, $modal, $window) {
 	$scope.launchLogin = function() {
 		var modalInstance = $modal.open({
@@ -77,64 +93,83 @@ cluelessApp.controller('loginModalCtrl', function($scope, $modal) {
 	}
 });
 
-cluelessApp.controller('companyLoginModalCtrl', function($scope){
+cluelessApp.controller('companyLoginModalCtrl', function($scope, $window){
 	$scope.email = "";
 	$scope.role = "Company";
 	$scope.pw = "";
 	$scope.fail = false;
+	$scope.isDisabled = false;
 	$scope.login = function(){
+		$scope.isDisabled = true;
+		$scope.fail = false;
 		$.ajax({
 			type: 'POST',
 			url: '/login',
 			data: {email: $scope.email, pw: $scope.pw, role: 'companies'}
-		}).done(function(data){
+		}).done($scope.callSuccess)
+		.fail($scope.callFail);
+
+	}
+
+	$scope.callSuccess = function(data){
 			data = JSON.parse(data);
 			if(data['status'] =="ok"){
 				$scope.fail = false;
-				console.log("Success!")
+				//userSession.newSession(data['name'], 'Company');
+				$window.location.pathname = '/company/home'
 			}
 			else if(data['status'] =="fail"){
 				$scope.fail = true;
 				$scope.failMessage = data['msg'];
 				$scope.$apply();
 			}
-		})
-		.fail(function(data){
+			$scope.isDisabled = false;
+		}
+
+	$scope.callFail = function(data){
 			$scope.fail = true;
 			$scope.failMessage = "An unexpected error occurred. Please try again later"
-		});
-
-	}
+			$scope.isDisabled = false;
+		}
 });
 
-cluelessApp.controller('applicantLoginModalCtrl', function($scope){
+cluelessApp.controller('applicantLoginModalCtrl', function($scope, $window){
 	$scope.email = "";
 	$scope.role = "Applicant";
 	$scope.pw = "";
 	$scope.fail = false;
+	$scope.isDisabled = false;
 	$scope.login = function(){
+		$scope.fail = false;
+		$scope.isDisabled = true;
 		$.ajax({
 			type: 'POST',
 			url: '/login',
 			data: {email: $scope.email, pw: $scope.pw, role: 'applicants'}
-		}).done(function(data){
+		}).done($scope.callSuccess)
+		.fail($scope.callFail);
+	}
+
+	$scope.callSuccess = function(data){
 			data = JSON.parse(data);
 			if(data['status'] =="ok"){
-				$scope.fai = false;
-				console.log("Success!")
+				$scope.fail = false;
+				//userSession.newSession(data['name'], 'Applicant');
+				$window.location.pathname = '/applicant/home';
 			}
 			else if(data['status'] =="fail"){
 				$scope.fail = true;
 				$scope.failMessage = data['msg'];
 				$scope.$apply();
 			}
-		})
-		.fail(function(data){
+			$scope.isDisabled = false;
+		}
+
+	$scope.callFail = function(data){
 			$scope.fail = true;
 			$scope.failMessage = "An unexpected error occurred. Please try again later"
-		});
-
-	}
+			$scope.isDisabled = false;
+		}
 });
 
 cluelessApp.controller('applicantRegisterModalCtrl', function($scope, $modalInstance) {
@@ -221,3 +256,27 @@ cluelessApp.controller('companyRegisterModalCtrl', function($scope, $modalInstan
 	}
 
 });
+
+cluelessApp.controller('applicantHomeCtrl', function($scope){
+	//$scope.name = userSession.name;
+	$.getJSON('/static/data.json', function(data){
+		$scope.openJobs = data['jobListings'];
+		$scope.$apply();
+	}).fail( function(d, textStatus, error) {
+        console.error("getJSON failed, status: " + textStatus + ", error: "+error)
+    });
+});
+
+cluelessApp.controller('companyHomeCtrl', function($scope){
+	$scope.openJobs = [];
+	//$scope.name = userSession.name;
+	$.getJSON('/static/data.json', function(data){
+		$.each(data, function(index, value){
+			$scope.openJobs.push(value);
+		});
+		console.log($scope.openJobs);
+		$scope.$apply();
+	}).fail( function(d, textStatus, error) {
+        console.error("getJSON failed, status: " + textStatus + ", error: "+error)
+    });
+})

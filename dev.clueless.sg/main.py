@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
-from index import IndexCompany,IndexApplicant
+from flask import render_template
+from index import IndexCompany,IndexApplicant,ListingApplicant,ListingCompany
 from passlib.apps import custom_app_context as pwd_context
 import json
 import MySQLdb
@@ -19,14 +20,20 @@ app.add_url_rule('/',
 app.add_url_rule('/company',
     view_func=IndexCompany.as_view('index_company'),
     methods=['GET'])
+app.add_url_rule('/applicant/home',
+	view_func=ListingApplicant.as_view('listing_applicant'),
+	methods=['GET'])
+app.add_url_rule('/company/home',
+	view_func=ListingCompany.as_view('listing_company'),
+	methods=['GET'])
 
 def get_db_connection():
 	if 'db' in globals():
 		return db
 	else:
 		db = MySQLdb.connect(host="50.62.209.38", 
-                     user="", 
-                      passwd="", 
+                     user="Bharath", 
+                      passwd="Bharath.cl", 
                       db="driffleskii_") 
 		return db
 
@@ -87,19 +94,22 @@ def login():
 		db = get_db_connection()
 		cur = db.cursor()
 		if request.form['role'] == "companies":
-			cur.execute("select password from companies where email = %s", [request.form['email']])
+			cur.execute("select password, is_verified, name from companies where email = %s", [request.form['email']])
 		else:
-			cur.execute("select password from applicants where email = %s", [request.form['email']])
+			cur.execute("select password, is_verified, name from applicants where email = %s", [request.form['email']])
 		if(cur.rowcount >0):
 			row = cur.fetchone()
-			if pwd_context.verify(request.form['pw'], row[0]):
-				return json.dumps({'status': 'ok'})
+			print row[1]
+			if(row[1] ==0):
+				return json.dumps({'status': 'fail','msg': 'Account verification not completed. Please visit the verification link sent to the registered email.'}, sort_keys=True)
+			elif pwd_context.verify(request.form['pw'], row[0]):
+				return json.dumps({'status': 'ok', 'name': row[2]})
 
 		return json.dumps({'status': 'fail','msg': failMsg}, sort_keys=True)
 
 def send_verification_email(role, toAddress):
 	api_user = "bharath.param"
-	api_key = ""
+	api_key = "bharath.cl"
 	sg = sendgrid.SendGridClient(api_user, api_key)
 	message = sendgrid.Mail()
 	message.add_to(toAddress)

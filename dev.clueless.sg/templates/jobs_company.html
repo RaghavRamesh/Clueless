@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>Clueless | {[name]}</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/static/img/favicon.ico">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="/static/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/one.style.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/static/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/plugins/image-hover/css/img-hover.css">
+
+    <!-- CSS Page Style -->    
+    <link rel="stylesheet" href="/static/css/pages/page_job.css">
+
+    <!-- CSS Theme -->    
+    <link rel="stylesheet" href="/static/css/theme-colors/default.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="/static/css/custom.css">
+</head> 
+
+<body ng-app="app" ng-controller="companyHomeCtrl">
+<div class="wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">
+                    <span>C</span>lueless
+                    <!-- <img src="static/img/logo1.png" alt="Logo"> -->
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{active: current === 'Applicant'}">
+                         <a href="/">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <!--=== Job Img ===-->
+    <div class="job-img margin-bottom-30">
+        <div class="job-banner">
+            <h2>Discover the Companies You would love to Work for ...</h2>
+        </div>   
+        <div class="job-img-inputs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 md-margin-bottom-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                            <input ng-model="q.position" type="text" placeholder="what job you are looking for" class="form-control">
+                        </div>
+                    </div> 
+
+                    <div class="col-sm-4 md-margin-bottom-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                            <input ng-model="q.company" type="text" placeholder="where would you like to work" class="form-control">
+                        </div>   
+                    </div>
+                </div>
+            </div>    
+        </div>    
+    </div>    
+    <!--=== End Job Img ===-->
+    <div class="container content">
+        <div class="headline margin-bottom-35"><h2>My Postings</h2></div>               
+            <!-- Easy Block -->  
+            <div ng-repeat="job in openJobs | filter: q">    
+
+                <div class="col-md-3 col-sm-6 md-margin-bottom-40">
+                    <div class="easy-block-v1">
+                        <div class="easy-block-v1-badge rgba-default">{[job['category']]}</div>                
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img alt="" src="{[job.imageUrl]}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-h">
+                            <h3>{[job.position]}</h3>
+                        </div>     
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">Applicants:</span> {[job.applicants]}</li>
+                            <li><span class="color-green">Shortlisted:</span> {[job.shortlisted]}</li>
+                        </ul>    
+                        <a class="btn-u btn-u-sm" href="#">View More</a>
+                    </div> 
+                </div>
+                <div class="clearfix margin-bottom-20" ng-if="$index%4==3" >
+                    <hr>
+                </div>
+            </div>
+    </div>
+    <!--=== End Content Part ===--> 
+</div><!--/End Wrapepr-->
+
+<!-- JS Global Compulsory -->           
+<script type="text/javascript" src="/static/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/static/plugins/jquery/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.min.js"></script> 
+<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="/static/plugins/back-to-top.js"></script>
+<script type="text/javascript" src="/static/plugins/jquery.parallax.js"></script>
+<script type="text/javascript" src="/static/plugins/image-hover/js/modernizr.js"></script>
+<script type="text/javascript" src="/static/plugins/image-hover/js/touch.js"></script>
+<!-- JS Page Level -->           
+<script type="text/javascript" src="/static/js/app.js"></script>
+<!-- Angular Files -->
+<script type="text/javascript" src="/static/js/angular.js"></script>
+<script type="text/javascript" src="/static/js/angular-route.js"></script>
+<script type="text/javascript" src="/static/js/ui-bootstrap-tpls-0.12.0.js"></script>
+<script type="text/javascript" src="/static/js/angular/app.js"></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        App.init();
+        App.initParallaxBg();      
+    });
+</script>
+<!--[if lt IE 9]>
+    <script src="assets/plugins/respond.js"></script>
+    <script src="assets/plugins/html5shiv.js"></script>
+    <script src="assets/js/plugins/placeholder-IE-fixes.js"></script>
+<![endif]-->
+
+</body>
+</html>

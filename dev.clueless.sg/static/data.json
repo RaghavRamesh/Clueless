@@ -1,0 +1,48 @@
+	{
+	  "jobListings" :
+	  	[{
+		"category": "Marketing",
+		"imageUrl": "/static/img/job/high-rated-job-2.1.jpg",
+		"company": "Thomas Cook Holidays",
+		"requirements": "7 years experience",
+		"position": "Marketing / Advertising",
+		"applicants": "5",
+		"shortlisted" : "2"
+	},
+	{
+		"category": "Education",
+		"imageUrl": "/static/img/job/high-rated-job-2.2.jpg",
+		"company": "University of Aberdeen",
+		"requirements": "10 - years experience",
+		"position": "Education/ Training",
+		"applicants": "7",
+		"shortlisted" : "3"
+	},
+	{
+		"category": "IT Management",
+		"imageUrl": "/static/img/job/high-rated-job-3.1.jpg",
+		"company": "Namifaze",
+		"requirements": "No experience required",
+		"position": "Project / Program Management",
+		"applicants": "8",
+		"shortlisted" : "1"
+	},
+	{
+		"category": "Executive",
+		"imageUrl": "/static/img/job/high-rated-job-3.2.jpg",
+		"company": "Royal Dutch Shell",
+		"requirements": "5 years experience",
+		"position": "Manager / Executive",
+		"applicants": "6",
+		"shortlisted" : "3"
+	},
+	{
+		"category": "Marketing",
+		"imageUrl": "/static/img/job/high-rated-job-3.3.jpg",
+		"company": "Thomas Cook Holidays",
+		"requirements": "7 years experience",
+		"position": "Marketing / Advertising",
+		"applicants": "8",
+		"shortlisted" : "3"
+	}
+	]}
