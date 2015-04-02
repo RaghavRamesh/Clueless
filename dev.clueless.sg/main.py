@@ -152,4 +152,4 @@ def email_verification_applicant():
 	else:
 		return 'Invalid or expired URL'
 
-app.run(debug=True)
+app.run(debug=True, port=80, host='0.0.0.0')
