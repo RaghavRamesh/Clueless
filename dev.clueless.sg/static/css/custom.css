@@ -39,5 +39,262 @@
 
 .job-status-processing{
   background: silver;
+}
 
+.ios-6-arrow.blue {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  position: relative;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  min-width: 20px;
+  height: 26px;
+  margin-left: 8px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.ios-6-arrow.blue.left:before {
+  box-sizing: border-box;
+  box-shadow: 1px 2px 1px -2px rgba(0, 0, 0, 0.4) inset, -1px 4px 2px -4px rgba(0, 0, 0, 0.4) inset;
+  background-color: #41618d;
+  background-image: -webkit-linear-gradient(top right, #99aac2, #41618d);
+  background-image: linear-gradient(to bottom left, #99aac2, #41618d);
+  background-size: 20px 18px;
+  -webkit-transform: rotate(-45deg) scale(0.86) skew(-9deg, -9deg);
+      -ms-transform: rotate(-45deg) scale(0.86) skew(-9deg, -9deg);
+          transform: rotate(-45deg) scale(0.86) skew(-9deg, -9deg);
+  -webkit-transform-origin: 50%;
+      -ms-transform-origin: 50%;
+          transform-origin: 50%;
+  display: inline-block;
+  border-radius: 0 6px 0 6px;
+  border-top-right-radius: 8px 5px;
+  border-bottom-left-radius: 5px 8px;
+  position: absolute;
+  top: 2px;
+  left: -7px;
+  width: 22px;
+  height: 22px;
+  content: "";
+  border-width: 0 0 1px 1px;
+  border-color: transparent transparent transparent #7594bf;
+  border-style: solid;
+  background-position: -2px 0;
+  background-repeat: no-repeat;
+}
+.ios-6-arrow.blue.left:after {
+  box-sizing: border-box;
+  background-color: #41618d;
+  background-image: -webkit-linear-gradient(top, #99aac2, #41618d);
+  background-image: linear-gradient(to bottom, #99aac2, #41618d);
+  background-size: 26px 26px;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.4) inset, -1px 1px 1px -1px rgba(0, 0, 0, 0.4) inset;
+  text-shadow: 0 -1px 0 #474747;
+  display: inline-block;
+  border-radius: 4px;
+  position: relative;
+  top: 0;
+  left: 2px;
+  margin: 0;
+  padding: 5px 10px 5px 5px;
+  width: auto;
+  height: 26px;
+  color: #fff;
+  content: attr(data-title);
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 16px;
+  border-width: 0 0 1px 0;
+  border-color: #7594bf;
+  border-style: solid;
+  font-weight: 500;
+  font-size: 12px;
+  font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+.ios-6-arrow.blue:hover:after {
+  background-color: #213147;
+  background-size: 26px 26px;
+  background-image: -webkit-linear-gradient(bottom, #31496a, #899db8);
+  background-image: linear-gradient(to top, #31496a, #899db8);
+}
+.ios-6-arrow.blue:hover:before {
+  background-color: #213147;
+  background-size: 20px 18px;
+  background-image: -webkit-linear-gradient(bottom left, #31496a, #899db8);
+  background-image: linear-gradient(to top right, #31496a, #899db8);
+}
+
+.ios-6-arrow.light {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  position: relative;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  min-width: 20px;
+  height: 26px;
+  margin-left: 8px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.ios-6-arrow.light.left:before {
+  box-sizing: border-box;
+  box-shadow: 1px 2px 1px -2px rgba(0, 0, 0, 0.4) inset, -1px 4px 2px -4px rgba(0, 0, 0, 0.4) inset;
+  background-color: #cccccc;
+  background-image: -webkit-linear-gradient(top right, #d4d7d4, #cccccc);
+  background-image: linear-gradient(to bottom left, #d4d7d4, #cccccc);
+  background-size: 20px 18px;
+  -webkit-transform: rotate(-45deg) scale(0.86) skew(-9deg, -9deg);
+      -ms-transform: rotate(-45deg) scale(0.86) skew(-9deg, -9deg);
+          transform: rotate(-45deg) scale(0.86) skew(-9deg, -9deg);
+  -webkit-transform-origin: 50%;
+      -ms-transform-origin: 50%;
+          transform-origin: 50%;
+  display: inline-block;
+  border-radius: 0 6px 0 6px;
+  border-top-right-radius: 8px 5px;
+  border-bottom-left-radius: 5px 8px;
+  position: absolute;
+  top: 2px;
+  left: -7px;
+  width: 22px;
+  height: 22px;
+  content: "";
+  border-width: 0 0 1px 1px;
+  border-color: transparent transparent transparent #bfbfbf;
+  border-style: solid;
+  background-position: -2px 0;
+  background-repeat: no-repeat;
+}
+.ios-6-arrow.light.left:after {
+  box-sizing: border-box;
+  background-color: #cccccc;
+  background-image: -webkit-linear-gradient(top, #d4d7d4, #cccccc);
+  background-image: linear-gradient(to bottom, #d4d7d4, #cccccc);
+  background-size: 26px 26px;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.4) inset, -1px 1px 1px -1px rgba(0, 0, 0, 0.4) inset;
+  text-shadow: 0 1px 0 #fff;
+  display: inline-block;
+  border-radius: 4px;
+  position: relative;
+  top: 0;
+  left: 2px;
+  margin: 0;
+  padding: 5px 10px 5px 5px;
+  width: auto;
+  height: 26px;
+  color: #474747;
+  content: attr(data-title);
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 16px;
+  border-width: 0 0 1px 0;
+  border-color: #bfbfbf;
+  border-style: solid;
+  font-weight: 500;
+  font-size: 12px;
+  font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+.ios-6-arrow.light:hover:after {
+  background-color: #999999;
+  background-size: 26px 26px;
+  background-image: -webkit-linear-gradient(top, #999999, #c7cbc7);
+  background-image: linear-gradient(to bottom, #999999, #c7cbc7);
+}
+.ios-6-arrow.light:hover:before {
+  background-color: #999999;
+  background-size: 20px 18px;
+  background-image: -webkit-linear-gradient(top right, #999999, #c7cbc7);
+  background-image: linear-gradient(to bottom left, #999999, #c7cbc7);
+}
+
+.ios-6-arrow.dark {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  position: relative;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  min-width: 20px;
+  height: 26px;
+  margin-left: 8px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.ios-6-arrow.dark.left:before {
+  box-sizing: border-box;
+  box-shadow: 1px 2px 1px -2px rgba(0, 0, 0, 0.4) inset, -1px 4px 2px -4px rgba(0, 0, 0, 0.4) inset;
+  background-color: #111;
+  background-image: -webkit-linear-gradient(top right, #555555, #111111);
+  background-image: linear-gradient(to bottom left, #555555, #111111);
+  background-size: 20px 18px;
+  -webkit-transform: rotate(-45deg) scale(0.86) skew(-9deg, -9deg);
+      -ms-transform: rotate(-45deg) scale(0.86) skew(-9deg, -9deg);
+          transform: rotate(-45deg) scale(0.86) skew(-9deg, -9deg);
+  -webkit-transform-origin: 50%;
+      -ms-transform-origin: 50%;
+          transform-origin: 50%;
+  display: inline-block;
+  border-radius: 0 6px 0 6px;
+  border-top-right-radius: 8px 5px;
+  border-bottom-left-radius: 5px 8px;
+  position: absolute;
+  top: 2px;
+  left: -7px;
+  width: 22px;
+  height: 22px;
+  content: "";
+  border-width: 0 0 1px 1px;
+  border-color: transparent transparent transparent #aaaaaa;
+  border-style: solid;
+  background-position: -2px 0;
+  background-repeat: no-repeat;
+}
+.ios-6-arrow.dark.left:after {
+  box-sizing: border-box;
+  background-color: #111;
+  background-image: -webkit-linear-gradient(top, #555555, #111111);
+  background-image: linear-gradient(to bottom, #555555, #111111);
+  background-size: 26px 26px;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.4) inset, -1px 1px 1px -1px rgba(0, 0, 0, 0.4) inset;
+  text-shadow: 0 -1px 0 #000;
+  display: inline-block;
+  border-radius: 4px;
+  position: relative;
+  top: 0;
+  left: 2px;
+  margin: 0;
+  padding: 5px 10px 5px 5px;
+  width: auto;
+  height: 26px;
+  color: #fff;
+  content: attr(data-title);
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 16px;
+  border-width: 0 0 1px 0;
+  border-color: #aaaaaa;
+  border-style: solid;
+  font-weight: 500;
+  font-size: 12px;
+  font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+.ios-6-arrow.dark:hover:after {
+  background-color: black;
+  background-size: 26px 26px;
+  background-image: -webkit-linear-gradient(top, #000000, #484848);
+  background-image: linear-gradient(to bottom, #000000, #484848);
+}
+.ios-6-arrow.dark:hover:before {
+  background-color: black;
+  background-size: 20px 18px;
+  background-image: -webkit-linear-gradient(top right, #000000, #484848);
+  background-image: linear-gradient(to bottom left, #000000, #484848);
 }

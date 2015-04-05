@@ -36,14 +36,16 @@ cluelessApp.controller('indexCtrl', function($scope, $modal, $window) {
 	$scope.launchLogin = function() {
 		var modalInstance = $modal.open({
 		      templateUrl: 'static/angular_templates/choosePersonLoginModal.html',
-		      controller: 'loginModalCtrl'
+		      controller: 'loginModalCtrl',
+              size: 'sm'
     	});
 	};
 
 	$scope.launchRegister = function() {
 		var modalInstance = $modal.open({
 		      templateUrl: 'static/angular_templates/choosePersonRegisterModal.html',
-		      controller: 'registerModalCtrl'
+		      controller: 'registerModalCtrl',
+              size: 'sm'
     	});
 	};
 	$scope.current = null;
@@ -93,7 +95,7 @@ cluelessApp.controller('loginModalCtrl', function($scope, $modal) {
 	}
 });
 
-cluelessApp.controller('companyLoginModalCtrl', function($scope, $window){
+cluelessApp.controller('companyLoginModalCtrl', function($scope, $window, $modalInstance){
 	$scope.email = "";
 	$scope.role = "Company";
 	$scope.pw = "";
@@ -131,9 +133,13 @@ cluelessApp.controller('companyLoginModalCtrl', function($scope, $window){
 			$scope.failMessage = "An unexpected error occurred. Please try again later"
 			$scope.isDisabled = false;
 		}
+
+    $scope.dismiss = function() {
+        $modalInstance.dismiss();
+    }
 });
 
-cluelessApp.controller('applicantLoginModalCtrl', function($scope, $window){
+cluelessApp.controller('applicantLoginModalCtrl', function($scope, $window, $modalInstance){
 	$scope.email = "";
 	$scope.role = "Applicant";
 	$scope.pw = "";
@@ -170,6 +176,9 @@ cluelessApp.controller('applicantLoginModalCtrl', function($scope, $window){
 			$scope.failMessage = "An unexpected error occurred. Please try again later"
 			$scope.isDisabled = false;
 		}
+    $scope.dismiss = function() {
+        $modalInstance.dismiss();
+    }
 });
 
 cluelessApp.controller('applicantRegisterModalCtrl', function($scope, $modalInstance) {
@@ -183,6 +192,9 @@ cluelessApp.controller('applicantRegisterModalCtrl', function($scope, $modalInst
 	$scope.open = function(){
 		$scope.opened = true;
 	}
+    $scope.dismiss = function() {
+        $modalInstance.dismiss();
+    }
 	$scope.registerApplicant = function(){
 		$scope.success = false;
 		$scope.fail = false;
@@ -227,6 +239,9 @@ cluelessApp.controller('companyRegisterModalCtrl', function($scope, $modalInstan
 	$scope.fail = false;
 	$scope.failMessage= "";
 	$scope.isDisabled = false;
+    $scope.dismiss = function() {
+        $modalInstance.dismiss();
+    }
 	$scope.registerCompany = function(){
 		$scope.success = false;
 		$scope.fail = false;

@@ -2,13 +2,20 @@
     <!--Reg Block-->
     <div class="reg-block modal-body">
         <div class="reg-block-header">
-            <h2>{[role]} Sign In </h2>
-            <ul class="social-icons">
+            <div class="row">
+            <div class="col-md-1" style="margin-left:-10px; margin-top: 10px; margin-right: 15px;">
+                <a class="ios-6-arrow left light" href="#" ng-click="dismiss()" data-title="back"></a>
+            </div>
+            <div class="col-md-10">
+                <h2>{[role]} Sign In </h2>
+            </div>
+            </div>
+<!--        <ul class="social-icons">
                 <li><a class="rounded-x social_facebook" data-original-title="Facebook" href="#"></a></li>
                 <li><a class="rounded-x social_twitter" data-original-title="Twitter" href="#"></a></li>
                 <li><a class="rounded-x social_googleplus" data-original-title="Google Plus" href="#"></a></li>
                 <li><a class="rounded-x social_linkedin" data-original-title="Linkedin" href="#"></a></li>
-            </ul>
+            </ul>-->
             <p>Don't Have Account? Click <a class="color-green" ng-click="launchRegister()">Sign Up</a> to register.</p>            
         </div>
 
