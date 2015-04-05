@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, session,redirect, url_for
 from flask import request
 from flask import render_template
 from index import IndexCompany,IndexApplicant,ListingApplicant,ListingCompany
@@ -13,19 +13,13 @@ import urlparse
 app = Flask(__name__)
 app.secret_key = "fals;dkfjaodsfu09wq8ur34ijrkldsjv98awuer9iq34r"
 
-app.add_url_rule('/',
-    view_func=IndexApplicant.as_view('index_applicant'),
-    methods=['GET'])
+def company_interceptor():
+	if session.get('logged_in') and session.get('obj')['role'] == 'company':
+		return True
 
-app.add_url_rule('/company',
-    view_func=IndexCompany.as_view('index_company'),
-    methods=['GET'])
-app.add_url_rule('/applicant/home',
-	view_func=ListingApplicant.as_view('listing_applicant'),
-	methods=['GET'])
-app.add_url_rule('/company/home',
-	view_func=ListingCompany.as_view('listing_company'),
-	methods=['GET'])
+def applicant_interceptor():
+	if session.get('logged_in') and session.get('obj')['role'] == 'applicant':
+		return True
 
 def get_db_connection():
 	if 'db' in globals():
@@ -35,7 +29,96 @@ def get_db_connection():
                      user="Bharath", 
                       passwd="Bharath.cl", 
                       db="driffleskii_") 
+		db.autocommit(True)
 		return db
+
+
+@app.route('/', methods=['GET'])
+def index_applicant():
+	if applicant_interceptor():
+		return redirect(url_for('jobs_applicant'))
+	elif company_interceptor():
+		return redirect(url_for('jobs_company'))	
+	return render_template('index_applicant.html')
+	
+@app.route('/company', methods=['GET'])
+def index_company():
+	if applicant_interceptor():
+		return redirect(url_for('jobs_applicant'))
+	elif company_interceptor():
+		return redirect(url_for('jobs_company'))	
+	return render_template('index_company.html')	
+
+@app.route('/applicant/home', methods=['GET'])
+def jobs_applicant():
+	if applicant_interceptor():
+		return render_template('jobs_applicant.html')
+	else:
+		return redirect(url_for('index_applicant'))
+
+@app.route('/company/home', methods=['GET'])
+def jobs_company():
+	if company_interceptor():
+		return render_template('jobs_company.html')
+	else:
+		return redirect(url_for('index_company'))
+
+@app.route('/applicant/listings', methods=['GET'])
+def get_all_job_listings():
+	if applicant_interceptor():
+		applicantId = session.get('obj')['id']
+		db = get_db_connection()
+		cur = db.cursor() 
+		cur.execute("SELECT l.*, c.name, a.status FROM listings l INNER JOIN companies c ON c.id = l.companyId LEFT JOIN applications a ON a.listingId = l.id AND a.applicantId = %s", [applicantId])
+		rows=cur.fetchall()
+		data={}
+		data['jobListings'] = []
+		for row in rows:
+			job={}
+			job['id']=row[0]
+			job['company']=row[8]
+			job['category']=row[2]
+			job['imageUrl']=row[3]
+			job['requirements']=row[5]
+			job['position']=row[4]
+			job['status']=row[9]
+			job['type']=row[6]
+			job['comments']=row[7]
+			data['jobListings'].append(job)
+		return json.dumps(data)
+	else:
+		return "User not authenticated"
+
+
+@app.route('/company/listings', methods=['GET'])
+def get_job_listings_company():
+	if company_interceptor():
+		companyId = session.get('obj')['id']
+		db = get_db_connection()
+		cur = db.cursor() 
+		cur.execute("SELECT l.*, COUNT(a.id) FROM listings  l LEFT JOIN applications a  ON l.id=a.listingId WHERE companyId = %s GROUP BY a.listingId;", [companyId])
+		rows=cur.fetchall()
+		data={}
+		data['jobListings'] = []
+		for row in rows:
+			job={}
+			job['id']=row[0]
+			job['category']=row[2]
+			job['imageUrl']=row[3]
+			job['position']=row[4]
+			job['requirements']=row[5]			
+			job['type']=row[6]
+			job['comments']=row[7]
+			job['applicants']=row[8]
+			data['jobListings'].append(job)
+		return json.dumps(data)
+	else:
+		return "User not authenticated"
+
+@app.route('/logout', methods=['POST'])
+def logout():
+	session['logged_in']=False
+	return json.dumps({'status': 'ok'})
 
 @app.route('/register/applicant', methods=['POST'])
 def register_applicant():
@@ -93,16 +176,18 @@ def login():
 	else:
 		db = get_db_connection()
 		cur = db.cursor()
-		if request.form['role'] == "companies":
-			cur.execute("select password, is_verified, name from companies where email = %s", [request.form['email']])
+		if request.form['role'] == "company":
+			cur.execute("select password, is_verified, name, id, email from companies where email = %s", [request.form['email']])
 		else:
-			cur.execute("select password, is_verified, name from applicants where email = %s", [request.form['email']])
+			cur.execute("select password, is_verified, name, id, email from applicants where email = %s", [request.form['email']])
 		if(cur.rowcount >0):
 			row = cur.fetchone()
 			print row[1]
 			if(row[1] ==0):
 				return json.dumps({'status': 'fail','msg': 'Account verification not completed. Please visit the verification link sent to the registered email.'}, sort_keys=True)
 			elif pwd_context.verify(request.form['pw'], row[0]):
+				session['logged_in']=True
+				session['obj']={'role':request.form['role'], 'id': row[3], 'name': row[2]}
 				return json.dumps({'status': 'ok', 'name': row[2]})
 
 		return json.dumps({'status': 'fail','msg': failMsg}, sort_keys=True)
@@ -117,9 +202,9 @@ def send_verification_email(role, toAddress):
 	message.set_subject("Clueless account verification")
 	randomLink = generate_random_url_link(toAddress)
 	if role=='c':
-		message.set_html("<p><b>Welcome to Clueless!</b> Please verify your account by visiting the <a href = 'http://dev.clueless.sg/verify/company?id=" + randomLink+ "'> verification link </a>" + " and complete the last step of your registration.</p></br><p style='margin:1em 0'>Should you ever encounter problems with your account or forget your password we will contact you at this address.</p></br><p style='margin:1em 0'>Enjoy!</p><p style='margin:1em 0'>The Clueless Team</p><br>")
+		message.set_html("<p><b>Welcome to Clueless!</b> Please verify your account by visiting the <a href = 'http://localhost:5000/verify/company?id=" + randomLink+ "'> verification link </a>" + " and complete the last step of your registration.</p></br><p style='margin:1em 0'>Should you ever encounter problems with your account or forget your password we will contact you at this address.</p></br><p style='margin:1em 0'>Enjoy!</p><p style='margin:1em 0'>The Clueless Team</p><br>")
 	else:
-		message.set_html("<p><b>Welcome to Clueless!</b> Please verify your account by visiting the <a href = 'http://dev.clueless.sg/verify/applicant?id=" + randomLink+ "'> verification link </a>" + " and complete the last step of your registration.</p></br><p style='margin:1em 0'>Should you ever encounter problems with your account or forget your password we will contact you at this address.</p></br><p style='margin:1em 0'>Enjoy!</p><p style='margin:1em 0'>The Clueless Team</p><br>")
+		message.set_html("<p><b>Welcome to Clueless!</b> Please verify your account by visiting the <a href = 'http://localhost:5000/verify/applicant?id=" + randomLink+ "'> verification link </a>" + " and complete the last step of your registration.</p></br><p style='margin:1em 0'>Should you ever encounter problems with your account or forget your password we will contact you at this address.</p></br><p style='margin:1em 0'>Enjoy!</p><p style='margin:1em 0'>The Clueless Team</p><br>")
 	
 	sg.send(message)
 	return randomLink

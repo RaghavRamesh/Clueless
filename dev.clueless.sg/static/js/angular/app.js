@@ -105,7 +105,7 @@ cluelessApp.controller('companyLoginModalCtrl', function($scope, $window){
 		$.ajax({
 			type: 'POST',
 			url: '/login',
-			data: {email: $scope.email, pw: $scope.pw, role: 'companies'}
+			data: {email: $scope.email, pw: $scope.pw, role: 'company'}
 		}).done($scope.callSuccess)
 		.fail($scope.callFail);
 
@@ -145,7 +145,7 @@ cluelessApp.controller('applicantLoginModalCtrl', function($scope, $window){
 		$.ajax({
 			type: 'POST',
 			url: '/login',
-			data: {email: $scope.email, pw: $scope.pw, role: 'applicants'}
+			data: {email: $scope.email, pw: $scope.pw, role: 'applicant'}
 		}).done($scope.callSuccess)
 		.fail($scope.callFail);
 	}
@@ -257,26 +257,50 @@ cluelessApp.controller('companyRegisterModalCtrl', function($scope, $modalInstan
 
 });
 
-cluelessApp.controller('applicantHomeCtrl', function($scope){
-	//$scope.name = userSession.name;
-	$.getJSON('/static/data.json', function(data){
+cluelessApp.controller('applicantHomeCtrl', function($scope, $http, $window){
+	$scope.openJobs=[];
+	$http.get('/applicant/listings').success(function(data){
 		$scope.openJobs = data['jobListings'];
-		$scope.$apply();
-	}).fail( function(d, textStatus, error) {
-        console.error("getJSON failed, status: " + textStatus + ", error: "+error)
-    });
+	}).
+	error(function(){
+		console.error("HTTP get request to /applicant/listings failed");
+	});
+
+	$scope.classDictionary={
+		'Accepted': 'job-status-accepted',
+		'Rejected':'job-status-rejected',
+		'Review':'job-status-review',
+		'Processing':'job-status-processing',
+		'Offered':'job-status-offered'
+	}
+
+	$scope.logout = function(){
+		$http.post('/logout').success(function(){
+			$window.location.pathname = '/';
+		})
+		.error(function(){
+			console.error("HTTP get request to /logout failed");
+	});
+	}
 });
 
-cluelessApp.controller('companyHomeCtrl', function($scope){
-	$scope.openJobs = [];
+cluelessApp.controller('companyHomeCtrl', function($scope, $http, $window){
+	$scope.postedJobs = [];
 	//$scope.name = userSession.name;
-	$.getJSON('/static/data.json', function(data){
-		$.each(data, function(index, value){
-			$scope.openJobs.push(value);
-		});
-		console.log($scope.openJobs);
-		$scope.$apply();
-	}).fail( function(d, textStatus, error) {
-        console.error("getJSON failed, status: " + textStatus + ", error: "+error)
-    });
+	$http.get('/company/listings').success(function(data){
+		$scope.postedJobs = data['jobListings'];
+	}).
+	error(function(){
+		console.error("HTTP get request to /company/listings failed");
+	});
+
+
+	$scope.logout = function(){
+		$http.post('/logout').success(function(){
+			$window.location.pathname = '/';
+		})
+		.error(function(){
+			console.error("HTTP get request to /logout failed");
+	});
+	}
 })

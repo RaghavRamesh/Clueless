@@ -20,21 +20,24 @@
   cursor: pointer;
 }
 
-
-.loading-modal {
-    display:    none;
-    position:   fixed;
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     100%;
-    width:      100%;
-    background: rgba( 255, 255, 255, .8 ) 
-                url('../img/loading.gif') 
-                50% 50% 
-                no-repeat;
+.job-status-accepted{
+  background: lightcyan;
 }
 
-#applicant-register-modal.loading .loading-modal {
-    display: block;
+.job-status-rejected{
+  background: bisque; 
+}
+
+.job-status-offered{
+    background: lightgreen;
+}
+
+.job-status-review{
+  background: silver;
+
+}
+
+.job-status-processing{
+  background: silver;
+
 }

@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>Clueless | {[name]}</title>
+    <title>Clueless | {[request.session.obj['name']]}</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -54,8 +54,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li ng-class="{active: current === 'Applicant'}">
-                         <a href="/">Logout</a>
+                    <li >
+                         <a href="" ng-click="logout()">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -94,11 +94,11 @@
     <div class="container content">
         <div class="headline margin-bottom-35"><h2>My Postings</h2></div>               
             <!-- Easy Block -->  
-            <div ng-repeat="job in openJobs | filter: q">    
+            <div ng-repeat="job in postedJobs | filter: q">    
 
                 <div class="col-md-3 col-sm-6 md-margin-bottom-40">
                     <div class="easy-block-v1">
-                        <div class="easy-block-v1-badge rgba-default">{[job['category']]}</div>                
+                        <div class="easy-block-v1-badge rgba-red">{[job['category']]}</div>                
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="item active">
@@ -110,8 +110,8 @@
                             <h3>{[job.position]}</h3>
                         </div>     
                         <ul class="list-unstyled">
-                            <li><span class="color-green">Applicants:</span> {[job.applicants]}</li>
-                            <li><span class="color-green">Shortlisted:</span> {[job.shortlisted]}</li>
+                            <li><span class="color-red">Type:</span> {[job.type]}</li>
+                            <li><span class="color-red">Applicants:</span> {[job.applicants]}</li>
                         </ul>    
                         <a class="btn-u btn-u-sm" href="#">View More</a>
                     </div> 

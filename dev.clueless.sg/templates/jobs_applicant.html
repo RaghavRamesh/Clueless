@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>Clueless | {[name]}</title>
+    <title>Clueless | {[request.session.obj['name']]}</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -54,8 +54,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li ng-class="{active: current === 'Applicant'}">
-                         <a href="/">Logout</a>
+                    <li>
+                         <a href="" ng-click="logout()">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -94,10 +94,10 @@
     <div class="container content">
         <div class="headline margin-bottom-35"><h2>Job Openings</h2></div>               
             <!-- Easy Block -->  
-            <div ng-repeat="job in openJobs | filter: q">              
-                <div class="col-md-3 col-sm-6 md-margin-bottom-40">
+            <div ng-if="openJobs.length > 0" ng-repeat="job in openJobs | filter: q">              
+                <div class="col-md-3 col-sm-6 md-margin-bottom-40" ng-class="classDictionary[job.status]">
                     <div class="easy-block-v1">
-                        <div class="easy-block-v1-badge rgba-default">{[job['category']]}</div>                
+                        <div class="easy-block-v1-badge rgba-red">{[job['category']]}</div>                
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="item active">
@@ -109,16 +109,26 @@
                             <h3>{[job.company]}</h3>
                         </div>     
                         <ul class="list-unstyled">
-                            <li><span class="color-green">Position:</span> {[job.position]}</li>
-                            <li><span class="color-green">Required:</span> {[job.requirements]}</li>
+                            <li><span class="color-red">Position:</span> {[job.position]}</li>
+                            <li><span class="color-red">Required:</span> {[job.requirements]}</li>
+                            <li><span class="color-red">Type:</span> {[job.type]}</li>
+                            
+                            <li><span ng-if="job.status=='Offered'"class="color-red"><b>OFFERED!</b></span></li>
+                             <li><span ng-if="job.status=='Accepted'" class="color-red"><b>ACCEPTED!</b></span></li>
+                            <li><span ng-if="job.status=='Processing'" class="color-red"><b>PROCESSING APPLICATION..</b></span></li>
+                            <li><span ng-if="job.status=='Rejected'" class="color-red"><b>REJECTED!</b></span></li>
+                            <li><span ng-if="job.status=='Review'"  class="color-red"><b>UNDER REVIEW</b></span></li>
                         </ul>    
                         <a class="btn-u btn-u-sm" href="#">View More</a>
-                        <a class="btn-u btn-u-sm btn-u-dark-blue" href="#">Apply</a>
+                        <a ng-if="job.status==null" class="btn-u btn-u-sm btn-u-dark-blue" href="#">Apply</a>
                     </div> 
                 </div>
                 <div class="clearfix margin-bottom-20" ng-if="$index%4==3" >
                     <hr>
                 </div>
+            </div>
+            <div ng-if="openJobs.length == 0">
+                No job postings yet! 
             </div>
     </div>
     <!--=== End Content Part ===--> 
