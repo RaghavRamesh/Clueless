@@ -274,11 +274,11 @@ cluelessApp.controller('companyRegisterModalCtrl', function($scope, $modalInstan
 
 cluelessApp.controller('applicantHomeCtrl', function($scope, $http, $window){
 	$scope.openJobs=[];
-	$http.get('/applicant/listings').success(function(data){
+	$http.get('/applicant/listing').success(function(data){
 		$scope.openJobs = data['jobListings'];
 	}).
 	error(function(){
-		console.error("HTTP get request to /applicant/listings failed");
+		console.error("HTTP get request to /applicant/listing failed");
 	});
 
 	$scope.classDictionary={
@@ -301,14 +301,17 @@ cluelessApp.controller('applicantHomeCtrl', function($scope, $http, $window){
 
 cluelessApp.controller('companyHomeCtrl', function($scope, $http, $window){
 	$scope.postedJobs = [];
-	//$scope.name = userSession.name;
-	$http.get('/company/listings').success(function(data){
+	
+	$http.get('/company/listing').success(function(data){
 		$scope.postedJobs = data['jobListings'];
 	}).
 	error(function(){
-		console.error("HTTP get request to /company/listings failed");
+		console.error("HTTP get request to /company/listing failed");
 	});
 
+	$scope.addPostingPage = function(){
+		$window.location.pathname = '/company/listing/add';
+	}
 
 	$scope.logout = function(){
 		$http.post('/logout').success(function(){
@@ -318,4 +321,57 @@ cluelessApp.controller('companyHomeCtrl', function($scope, $http, $window){
 			console.error("HTTP get request to /logout failed");
 	});
 	}
-})
+});
+
+cluelessApp.controller('addPostingCtrl', function($scope, $http, $window){
+
+	$scope.questions = [];
+	$http.get('/company/application_questions').success(function(data){
+		$scope.questions = data['questions'];
+		$scope.$apply();
+		$("#available-questions, #selected-questions").sortable({
+			revert: "invalid",
+			connectWith: '.question-container'
+		}).disableSelection();
+	}).
+	error(function(){
+		console.error("HTTP get request to /company/questions failed");
+	});
+
+	$scope.title = "";
+	$scope.category = "";
+	$scope.type = "Internship";
+	$scope.requirements = "";
+	$scope.resp = "";
+	$scope.comments = "";
+
+	$scope.fail = false;
+	$scope.isDisabled = false;
+
+	$scope.addNewPosting = function(){
+		$scope.isDisabled = true;
+		$scope.fail = false;
+		var questions = [];
+		$("#selected-questions > li").each(function(index){
+			questions.push($(this).data("id"));
+
+		});
+		$http.post('/company/insert_listing', {title: $scope.title, type:$scope.type, category:$scope.category,
+			req: $scope.requirements, res:$scope.resp, comments: $scope.comments, qns: questions})
+		.success(function(data){
+			$scope.isDisabled = false;
+			if(data['status'] == "ok")
+				$window.location.pathname = '/company/home';
+			else{
+				$scope.fail = true;
+				$scope.failMessage = data['msg'];
+			}
+		})
+		.error(function(data){
+			$scope.fail = true;
+			$scope.failMessage = "An unexpected error occurred. Please try again later";
+			$scope.isDisabled = false;
+		});
+	}
+
+});

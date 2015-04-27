@@ -63,7 +63,7 @@ def jobs_company():
 	else:
 		return redirect(url_for('index_company'))
 
-@app.route('/applicant/listings', methods=['GET'])
+@app.route('/applicant/listing', methods=['GET'])
 def get_all_job_listings():
 	if applicant_interceptor():
 		applicantId = session.get('obj')['id']
@@ -76,21 +76,22 @@ def get_all_job_listings():
 		for row in rows:
 			job={}
 			job['id']=row[0]
-			job['company']=row[8]
-			job['category']=row[2]
-			job['imageUrl']=row[3]
+			job['position']=row[2]
+			job['type']=row[3]
+			job['category']=row[4]
 			job['requirements']=row[5]
-			job['position']=row[4]
-			job['status']=row[9]
-			job['type']=row[6]
-			job['comments']=row[7]
+			job['responsibilities']=row[6]
+			job['imageUrl']=row[7]
+			job['comments']=row[8]
+			job['company']=row[9]
+			job['status']=row[10]
 			data['jobListings'].append(job)
 		return json.dumps(data)
 	else:
 		return "User not authenticated"
 
 
-@app.route('/company/listings', methods=['GET'])
+@app.route('/company/listing', methods=['GET'])
 def get_job_listings_company():
 	if company_interceptor():
 		companyId = session.get('obj')['id']
@@ -102,25 +103,79 @@ def get_job_listings_company():
 		data['jobListings'] = []
 		for row in rows:
 			job={}
+			job['company']=session.get('obj')['name']
 			job['id']=row[0]
-			job['category']=row[2]
-			job['imageUrl']=row[3]
-			job['position']=row[4]
-			job['requirements']=row[5]			
-			job['type']=row[6]
-			job['comments']=row[7]
-			job['applicants']=row[8]
+			job['position']=row[2]
+			job['type']=row[3]
+			job['category']=row[4]
+			job['requirements']=row[5]
+			job['responsibilities']=row[6]		
+			job['imageUrl']=row[7]
+			job['comments']=row[8]
+			job['applicants']=row[9]
 			data['jobListings'].append(job)
 		return json.dumps(data)
 	else:
 		return "User not authenticated"
 
-@app.route('/logout', methods=['POST'])
+@app.route('/company/listing/add', methods=['GET'])
+def add_new_posting():
+	if company_interceptor():
+		return render_template('add_new_posting.html')
+	else:
+		return redirect(url_for('index_company'))
+
+@app.route('/company/application_questions', methods=['GET'])
+def get_application_questions_company():
+	if company_interceptor():
+		companyId = session.get('obj')['id']
+		db = get_db_connection()
+		cur = db.cursor()
+		cur.execute("SELECT id, question FROM questions WHERE company_id = %s", [companyId])
+		rows=cur.fetchall()
+		data = {}
+		data['questions'] = []
+		for row in rows:
+			question={}
+			question['id']=row[0]
+			question['text']=row[1]
+			data['questions'].append(question)
+		return json.dumps(data)
+	else:
+		return "User not authenticated"
+
+@app.route('/company/insert_listing', methods=['POST'])
+def insert_new_listing():
+	if company_interceptor():
+		request_json=request.get_json()
+		print request_json
+		title=request_json.get('title')
+		jobtype=request_json.get('type')
+		
+		category=request_json.get('category')
+		if title == "" or jobtype == "" or category == "":
+			return json.dumps({'status': 'fail', 'msg': 'Please fill in all the required fields'}, sort_keys=True)
+		companyId = session.get('obj')['id']
+		db = get_db_connection()
+		cur = db.cursor()
+		questions = request_json.get('qns')
+		cur.execute("INSERT INTO listings (companyId, position, type,category, requirements, responsibilities, comments) VALUES (%s, %s, %s, %s, %s, %s, %s)", [companyId,title, jobtype, category, request_json.get('req'), request_json.get('res'), request_json.get('comments')])
+		cur.execute("SELECT MAX(ID) FROM listings")
+		row=cur.fetchone()
+		listingId=row[0]
+		for n in questions:
+			cur.execute("INSERT INTO listing_questions VALUES(%s, %s)", [listingId, n])
+		return json.dumps({'status': 'ok', 'msg': 'Successfully posted'})
+	else:
+		return redirect(url_for('index_company'))
+
+
+@app.route('/logout', methods=['GET'])
 def logout():
 	session['logged_in']=False
 	return json.dumps({'status': 'ok'})
 
-@app.route('/register/applicant', methods=['POST'])
+@app.route('/register/applicant', methods=['GET'])
 def register_applicant():
 	if request.form['name'] == "" or request.form['email'] == "" or request.form['pw'] == "" or request.form['cpw']=="":
 		return json.dumps({'status': 'fail', 'msg': 'Please fill out all the fields in the form'}, sort_keys=True)
@@ -142,7 +197,7 @@ def register_applicant():
 			cur.execute("insert into applicants(name, email, dob, password, verification_link) values(%s, %s,%s, %s, %s)", [request.form['name'], request.form['email'],request.form['dob'], hp, verificationLink])
 			return json.dumps({'status': 'ok'})
 
-@app.route('/register/company', methods=['POST'])
+@app.route('/register/company', methods=['GET'])
 def register_company():
 	if request.form['name'] == "" or request.form['email'] == "" or request.form['pw'] == "" or request.form['cpw']=="":
 		return json.dumps({'status': 'fail', 'msg': 'Please fill out all the fields in the form'}, sort_keys=True)
@@ -164,7 +219,7 @@ def register_company():
 			cur.execute("insert into companies(name, email, password, verification_link) values(%s, %s,%s, %s)", [request.form['name'], request.form['email'], hp, verificationLink])
 			return json.dumps({'status': 'ok'})
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET'])
 def login():
 	failMsg = 'Invalid email or password'
 	if request.form['email'] == "" or request.form['pw'] == "" :

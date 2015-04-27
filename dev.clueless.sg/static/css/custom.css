@@ -298,3 +298,24 @@
   background-image: -webkit-linear-gradient(top right, #000000, #484848);
   background-image: linear-gradient(to bottom left, #000000, #484848);
 }
+
+.question{
+  background-color: #eee;
+  border: thin #ccc solid;
+  border-radius: 10px;
+  cursor: move;
+  display: block;
+  font-size: 14px;
+  height: 45px;
+  margin: 5px 5px;
+  padding: 2px;
+}
+
+.question-container{
+  border: 1px solid #000;
+  min-height: 20px;
+  list-style-type: none;
+  padding: 0;
+
+}
+
