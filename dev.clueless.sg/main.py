@@ -97,7 +97,7 @@ def get_job_listings_company():
 		companyId = session.get('obj')['id']
 		db = get_db_connection()
 		cur = db.cursor() 
-		cur.execute("SELECT l.*, COUNT(a.id) FROM listings  l LEFT JOIN applications a  ON l.id=a.listingId WHERE companyId = %s GROUP BY a.listingId;", [companyId])
+		cur.execute("SELECT l.*, COUNT(a.id) FROM listings  l LEFT JOIN applications a  ON l.id=a.listingId WHERE l.companyId = %s GROUP BY l.id;", [companyId])
 		rows=cur.fetchall()
 		data={}
 		data['jobListings'] = []
@@ -112,7 +112,7 @@ def get_job_listings_company():
 			job['responsibilities']=row[6]		
 			job['imageUrl']=row[7]
 			job['comments']=row[8]
-			job['applicants']=row[9]
+			job['applicants']=row[10]
 			data['jobListings'].append(job)
 		return json.dumps(data)
 	else:
@@ -159,23 +159,54 @@ def insert_new_listing():
 		db = get_db_connection()
 		cur = db.cursor()
 		questions = request_json.get('qns')
-		cur.execute("INSERT INTO listings (companyId, position, type,category, requirements, responsibilities, comments) VALUES (%s, %s, %s, %s, %s, %s, %s)", [companyId,title, jobtype, category, request_json.get('req'), request_json.get('res'), request_json.get('comments')])
+		cur.execute("INSERT INTO listings (companyId, position, type,category, requirements, responsibilities,imageUrl, comments) VALUES (%s, %s, %s, %s, %s, %s,%s, %s)", [companyId,title, jobtype, category, request_json.get('req'), request_json.get('res'), '/static/img/job/high-rated-job-3.3.jpg', request_json.get('comments')])
 		cur.execute("SELECT MAX(ID) FROM listings")
 		row=cur.fetchone()
 		listingId=row[0]
+		jobUrl=generate_random_url_link(str(listingId))
+		cur.execute("UPDATE listings set url = %s WHERE id = %s", [jobUrl, listingId])
 		for n in questions:
 			cur.execute("INSERT INTO listing_questions VALUES(%s, %s)", [listingId, n])
 		return json.dumps({'status': 'ok', 'msg': 'Successfully posted'})
 	else:
 		return redirect(url_for('index_company'))
 
+@app.route('/company/job/<id>', methods=['POST'])
+def return_hash_id(id):
+	if company_interceptor():
+		return json.dumps({'url': generate_random_url_link(str(id))})
+	else:
+		return redirect(url_for('index_company'))
 
-@app.route('/logout', methods=['GET'])
+@app.route('/job/<id_hash>', methods=['GET'])
+def job_id_page(id_hash):
+	return render_template('job_description.html')
+
+@app.route('/job/<id_hash>', methods=['POST'])
+def get_job_by_idhash(id_hash):
+	db = get_db_connection()
+	cur = db.cursor()
+	cur.execute("SELECT l.*, c.name FROM listings l INNER JOIN companies c ON c.id=l.companyId where url=%s", [id_hash])
+	row=cur.fetchone()
+	job={}
+	job['id']=row[0]
+	job['position']=row[2]
+	job['type']=row[3]
+	job['category']=row[4]
+	job['requirements']=row[5]
+	job['responsibilities']=row[6]		
+	job['imageUrl']=row[7]
+	job['comments']=row[8]
+	job['companyName'] = row[10]
+	return json.dumps(job)
+
+
+@app.route('/logout', methods=['POST'])
 def logout():
 	session['logged_in']=False
 	return json.dumps({'status': 'ok'})
 
-@app.route('/register/applicant', methods=['GET'])
+@app.route('/register/applicant', methods=['POST'])
 def register_applicant():
 	if request.form['name'] == "" or request.form['email'] == "" or request.form['pw'] == "" or request.form['cpw']=="":
 		return json.dumps({'status': 'fail', 'msg': 'Please fill out all the fields in the form'}, sort_keys=True)
@@ -197,7 +228,7 @@ def register_applicant():
 			cur.execute("insert into applicants(name, email, dob, password, verification_link) values(%s, %s,%s, %s, %s)", [request.form['name'], request.form['email'],request.form['dob'], hp, verificationLink])
 			return json.dumps({'status': 'ok'})
 
-@app.route('/register/company', methods=['GET'])
+@app.route('/register/company', methods=['POST'])
 def register_company():
 	if request.form['name'] == "" or request.form['email'] == "" or request.form['pw'] == "" or request.form['cpw']=="":
 		return json.dumps({'status': 'fail', 'msg': 'Please fill out all the fields in the form'}, sort_keys=True)
@@ -219,7 +250,7 @@ def register_company():
 			cur.execute("insert into companies(name, email, password, verification_link) values(%s, %s,%s, %s)", [request.form['name'], request.form['email'], hp, verificationLink])
 			return json.dumps({'status': 'ok'})
 
-@app.route('/login', methods=['GET'])
+@app.route('/login', methods=['POST'])
 def login():
 	failMsg = 'Invalid email or password'
 	if request.form['email'] == "" or request.form['pw'] == "" :

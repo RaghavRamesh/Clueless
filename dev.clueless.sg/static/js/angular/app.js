@@ -1,14 +1,16 @@
 var cluelessApp = angular.module('app', ['ui.bootstrap', 'ngRoute']);
 
 cluelessApp.config(function($locationProvider, $routeProvider) {
-	$locationProvider.html5Mode(false).hashPrefix('!');
+	
 	$routeProvider.when('/applicant', {
 		templateUrl: 'static/angular_templates/applicantHomePage.html',
 		controller: 'applicantHomePageCtrl'
 	}).when('/company', {
-		templateUrl: 'static/angular_templates/companyHomePage.html',
+		templateUrl: 'static/angular_templates/add_new_posting.html',
 		controller: 'companyHomePageCtrl'
 	}).otherwise({redirectTo: '/applicant'});
+
+	$locationProvider.html5Mode(true);
 });
 
 cluelessApp.config(['$interpolateProvider', function($interpolateProvider) {
@@ -306,7 +308,7 @@ cluelessApp.controller('companyHomeCtrl', function($scope, $http, $window){
 		$scope.postedJobs = data['jobListings'];
 	}).
 	error(function(){
-		console.error("HTTP get request to /company/listing failed");
+		console.error("HTTP request to /company/listing failed");
 	});
 
 	$scope.addPostingPage = function(){
@@ -318,9 +320,31 @@ cluelessApp.controller('companyHomeCtrl', function($scope, $http, $window){
 			$window.location.pathname = '/';
 		})
 		.error(function(){
-			console.error("HTTP get request to /logout failed");
+			console.error("HTTP request to /logout failed");
 	});
 	}
+
+	$scope.showPosting = function(id){
+		$http.post('/company/job/' + id).success(function(data){
+			$window.location.pathname = '/job/' + data['url'];
+		})
+		.error(function(){
+			console.error("HTTP request to /company/job/id failed");
+		})
+	}
+});
+
+cluelessApp.controller('jobIdPageCtrl', function($scope, $http, $window){
+	$scope.job = [];
+	arr=window.location.href.split('/');
+	id=arr[arr.length-1];
+
+	$http.post('/job/'+ id).success(function(data){
+		$scope.job = data;
+		$scope.job['requirements'] = $scope.job['requirements'].split('.');
+		$scope.job['responsibilities'] = $scope.job['responsibilities'].split('.');
+
+	});
 });
 
 cluelessApp.controller('addPostingCtrl', function($scope, $http, $window){

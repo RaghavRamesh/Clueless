@@ -106,7 +106,7 @@
                             <li><span class="color-red">Type:</span> {[job.type]}</li>
                             <li><span class="color-red">Applicants:</span> {[job.applicants]}</li>
                         </ul>    
-                        <button class="btn-u btn-u-red">View More</button>
+                        <button class="btn-u btn-u-red" ng-click="showPosting(job.id)">View More</button>
                     </div> 
                 </div>
                 <div class="clearfix margin-bottom-20" ng-if="$index%4==3" >
